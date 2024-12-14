@@ -51,14 +51,14 @@ public class ClienteServiceImpl {
 	
 	
 	public Cliente findById(UUID id) {
-		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse Cliente não existe"));
+		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse cliente não existe."));
 	}
 
 	private void verificaSeClienteJaExiste(ClienteRequest request) {
 		Cliente clienteNaBase = repository.findByDocumento(request.getDocumento());
 		
 		if(clienteNaBase != null) {
-			throw new NegocioException("Esse Cliente já esta cadastrado");
+			throw new NegocioException("Esse cliente já esta cadastrado.");
 		}
 	}
 
