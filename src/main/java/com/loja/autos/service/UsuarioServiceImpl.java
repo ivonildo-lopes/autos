@@ -49,18 +49,18 @@ public class UsuarioServiceImpl {
 	
 	
 	public Usuario findById(UUID id) {
-		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse Usuario não existe"));
+		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse usuario não existe."));
 	}
 	
 	public Usuario findByDocumento(String documento) {
-		return this.repository.findByDocumento(documento).orElseThrow(() -> new NegocioException("Esse Usuario não existe"));
+		return this.repository.findByDocumento(documento).orElseThrow(() -> new NegocioException("Esse usuario não existe."));
 	}
 
 	private void verificaSeUsuarioJaExiste(UsuarioRequest request) {
 		var usuarioBase = repository.findByDocumento(request.getDocumento());
 		
 		if(usuarioBase.isPresent()) {
-			throw new NegocioException("Esse Usuario já esta cadastrado");
+			throw new NegocioException("Esse usuario já esta cadastrado.");
 		}
 	}
 
