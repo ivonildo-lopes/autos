@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
+import com.loja.autos.enums.Role;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,4 +28,5 @@ public class UsuarioRequest extends PessoaRequest implements Serializable {
 	
 	private List<UUID> permissoes;
 	
+	private Role role;
 }

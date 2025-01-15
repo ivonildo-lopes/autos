@@ -13,6 +13,7 @@ import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.mappers.PessoaMapper;
 import com.loja.autos.mappers.UsuarioMapper;
 import com.loja.autos.repository.UsuarioRepository;
+import com.loja.autos.security.UserSystem;
 
 @Service
 public class UsuarioServiceImpl {
@@ -54,6 +55,16 @@ public class UsuarioServiceImpl {
 	
 	public Usuario findByDocumento(String documento) {
 		return this.repository.findByDocumento(documento).orElseThrow(() -> new NegocioException("Esse usuario não existe."));
+	}
+	
+	public UserSystem loadUserByUsername(String email) {
+		var usuarioBase = repository.findByEmail(email);
+		
+		if(!usuarioBase.isPresent()) {
+			throw new NegocioException("Erro ao tentar logar.");
+		}
+		
+		return new UserSystem(usuarioBase.get());
 	}
 
 	private void verificaSeUsuarioJaExiste(UsuarioRequest request) {

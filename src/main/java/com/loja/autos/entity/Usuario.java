@@ -1,8 +1,9 @@
 package com.loja.autos.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.UUID;
+
+import com.loja.autos.enums.Role;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,7 +41,9 @@ public class Usuario implements Serializable {
 //	@ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable(name = "permissao_usuario", joinColumns = @JoinColumn(name = "id_usuario"),
 //    inverseJoinColumns = @JoinColumn(name = "id_permissao"))
-	@jakarta.persistence.Transient
-	private List<Permissao> permissoes;
+//	@jakarta.persistence.Transient
+//	private List<Permissao> permissoes;
+	
+	private Role role;
 
 }
