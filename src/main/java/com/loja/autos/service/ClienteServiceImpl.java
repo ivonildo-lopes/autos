@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.loja.autos.dto.request.ClienteRequest;
 import com.loja.autos.dto.request.PessoaRequest;
 import com.loja.autos.entity.Cliente;
+import com.loja.autos.entity.Pessoa;
 import com.loja.autos.exceptions.NegocioException;
+import com.loja.autos.mappers.ClienteMapper;
 import com.loja.autos.mappers.PessoaMapper;
 import com.loja.autos.repository.ClienteRepository;
 
@@ -29,9 +31,9 @@ public class ClienteServiceImpl {
 		
 		verificaSeClienteJaExiste(request);
 		
-		Cliente cliente = new Cliente();
-		cliente.setEmail(request.getEmail());
-		cliente.setPessoa(this.pessoaService.getPessoa(PessoaMapper.clienteToPessoaRequest(request)));
+		Pessoa pessoa = this.pessoaService.getPessoa(PessoaMapper.clienteToPessoaRequest(request));
+
+		Cliente cliente = ClienteMapper.converterToModel(request, pessoa);
 		
 		return repository.save(cliente);
 	}
@@ -41,24 +43,24 @@ public class ClienteServiceImpl {
 		
 		PessoaRequest pessoaRequest = PessoaMapper.clienteToPessoaRequest(request);
 
-		Cliente cliente = findById(id);
+		Cliente clienteBase = findById(id);
+		Pessoa pessoa = this.pessoaService.update(PessoaMapper.dtoToModel(pessoaRequest), clienteBase.getPessoa());
 		
-		cliente.setEmail(request.getEmail());
-		cliente.setPessoa(this.pessoaService.update(PessoaMapper.dtoToModel(pessoaRequest), cliente.getPessoa()));
+		Cliente clienteUpdate = ClienteMapper.converterToModel(request, clienteBase, pessoa);
 		
-		return repository.save(cliente);
+		return repository.save(clienteUpdate);
 	}
 	
 	
 	public Cliente findById(UUID id) {
-		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse Cliente não existe"));
+		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse cliente não existe."));
 	}
 
 	private void verificaSeClienteJaExiste(ClienteRequest request) {
 		Cliente clienteNaBase = repository.findByDocumento(request.getDocumento());
 		
 		if(clienteNaBase != null) {
-			throw new NegocioException("Esse Cliente já esta cadastrado");
+			throw new NegocioException("Esse cliente já esta cadastrado.");
 		}
 	}
 
