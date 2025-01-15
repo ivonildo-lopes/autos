@@ -41,7 +41,7 @@ public class Endereco implements Serializable {
 	
 	private String municipio;
 	
-	private String estado;
+	private String uf;
 	
 	private Boolean ativo = true;
 	

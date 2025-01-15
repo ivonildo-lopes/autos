@@ -33,5 +33,5 @@ public class EnderecoRequest implements Serializable {
 	private String municipio;
 	
 	@NotBlank(message = "Favor informar o estado.")
-	private String estado;
+	private String uf;
 }

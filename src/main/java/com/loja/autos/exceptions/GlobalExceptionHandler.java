@@ -48,19 +48,37 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private String extractFieldName(String message) {
         LOGGER.error("============== " + message);
+        
+        String msg = null;
+        
+        msg =  tratamentoCamposVeiculo(message);
+        
         if (message != null && (message.contains("cpf") || message.contains("CPF"))) {
-            return "Valor duplicado encontrado para o campo: CPF";
+            msg = "Valor duplicado encontrado para o campo: CPF";
         } else if (message != null && message.contains("email")) {
-            return "Valor duplicado encontrado para o campo: EMAIL";
+        	msg = "Valor duplicado encontrado para o campo: EMAIL";
         } else if (message != null && message.contains("codigo")) {
-            return "Valor duplicado encontrado para o campo: CODIGO";
+        	msg = "Valor duplicado encontrado para o campo: CODIGO";
         } else if(message != null && message.contains("fk_tbtiporeceitaorigem_tborigemdebito")) {
-            return "Não foi possível realizar a exclusão! A Origem do Débito está sendo utilizada para um Tipo de Receita cadastrada.";
-        }
-        return null;
+        	msg = "Não foi possível realizar a exclusão! A Origem do Débito está sendo utilizada para um Tipo de Receita cadastrada.";
+        } 
+        
+        return msg;
     }
 
-    @Override
+    private String tratamentoCamposVeiculo(String message) {
+    	if (message != null && (message.contains("tb_veiculo_chassi_key") || message.contains("CHASSI"))) {
+            return "Valor duplicado encontrado para o campo: chassi";
+        } else if (message != null && message.contains("tb_veiculo_placa_key")) {
+        	return  "Valor duplicado encontrado para o campo: PLACA";
+        } else if (message != null && message.contains("tb_veiculo_renavam_key")) {
+        	return  "Valor duplicado encontrado para o campo: RENAVAM";
+        } 
+    	
+    	return null;
+	}
+
+	@Override
     @Nullable
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(
 			MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {

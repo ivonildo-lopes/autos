@@ -28,10 +28,13 @@ public class Veiculo implements Serializable {
 	@Column(name = "id_veiculo")
 	private UUID id;
 	
+	@Column(unique = true)
 	private String placa;
 	
+	@Column(unique = true)
 	private String renavam;
 	
+	@Column(unique = true)
 	private String chassi;
 	
 	private String marca;
