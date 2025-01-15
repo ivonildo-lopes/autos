@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.loja.autos.dto.request.VeiculoRequest;
-import com.loja.autos.entity.Veiculo;
+import com.loja.autos.dto.response.VeiculoResponse;
 import com.loja.autos.service.VeiculoServiceImpl;
 
 import jakarta.validation.Valid;
@@ -27,17 +27,17 @@ public class VeiculoController {
 	}
 	
 	@PostMapping
-	public Veiculo save(@RequestBody @Valid VeiculoRequest request) {
+	public VeiculoResponse save(@RequestBody @Valid VeiculoRequest request) {
 		return service.register(request);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public Veiculo save(@PathVariable(value = "id") UUID id, @RequestBody @Valid VeiculoRequest request) {
+	public VeiculoResponse update(@PathVariable(value = "id") UUID id, @RequestBody @Valid VeiculoRequest request) {
 		return service.update(request, id);
 	}
 	
 	@GetMapping(value = "/{placa}")
-	public Veiculo save(@PathVariable(value = "placa") String placa) {
+	public VeiculoResponse findByPlaca(@PathVariable(value = "placa") String placa) {
 		return service.findByPlaca(placa);
 	}
 	

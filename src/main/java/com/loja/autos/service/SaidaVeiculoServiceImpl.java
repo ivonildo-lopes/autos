@@ -7,10 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.loja.autos.dto.request.SaidaVeiculoRequest;
 import com.loja.autos.dto.request.VeiculoRequest;
+import com.loja.autos.entity.EntradaVeiculo;
 import com.loja.autos.entity.SaidaVeiculo;
 import com.loja.autos.entity.Veiculo;
 import com.loja.autos.enums.StatusVeiculo;
 import com.loja.autos.exceptions.NegocioException;
+import com.loja.autos.mappers.SaidaVeiculoMapper;
 import com.loja.autos.repository.SaidaVeiculoRepository;
 
 @Service
@@ -38,22 +40,26 @@ public class SaidaVeiculoServiceImpl {
 		var entradaVeiculo = entradaService.findById(request.getIdEntradaVeiculo());
 		var cliente = clienteService.findById(request.getIdCliente());
 		
+		validacaoSaidaVeiculo(entradaVeiculo);
+		
+		SaidaVeiculo sv = SaidaVeiculoMapper.converterToModel(request ,cliente, entradaVeiculo);
+		
+		SaidaVeiculo entradaEmLoja = repository.save(sv);
+		
+		updateStatus(entradaVeiculo);
+		
+		return entradaEmLoja;
+	}
+
+	private void updateStatus(EntradaVeiculo entradaVeiculo) {
+		veiculoService.updateStatus(entradaVeiculo.getVeiculo(), StatusVeiculo.VENDIDO);
+		entradaService.updateStatusEntradaVeiculo(entradaVeiculo, StatusVeiculo.VENDIDO);
+	}
+
+	private void validacaoSaidaVeiculo(EntradaVeiculo entradaVeiculo) {
 		if(!StatusVeiculo.EM_LOJA.equals(entradaVeiculo.getStatusVeiculo())) {
 			throw new NegocioException("Esse veiculo não pode ser dado a saida.");
 		}
-		
-		SaidaVeiculo sv = new SaidaVeiculo();
-		sv.setCliente(cliente);
-		sv.setEntradaVeiculo(entradaVeiculo);
-		sv.setDataSaida(request.getDataSaida());
-		sv.setValorSaida(request.getValorSaida());
-
-		SaidaVeiculo entradaEmLoja = repository.save(sv);
-		
-		veiculoService.updateStatus(entradaVeiculo.getVeiculo(), StatusVeiculo.VENDIDO);
-		entradaService.updateStatusEntradaVeiculo(entradaVeiculo, StatusVeiculo.VENDIDO);
-		
-		return entradaEmLoja;
 	}
 
 	@Transactional

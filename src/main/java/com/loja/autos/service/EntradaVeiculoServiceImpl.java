@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.loja.autos.dto.request.EntradaVeiculoRequest;
 import com.loja.autos.entity.EntradaVeiculo;
+import com.loja.autos.entity.Veiculo;
 import com.loja.autos.enums.StatusVeiculo;
 import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.mappers.EntradaVeiculoMapper;
@@ -29,19 +30,21 @@ public class EntradaVeiculoServiceImpl {
 		
 		var veiculo = veiculoService.findById(request.getIdVeiculo());
 		
-		if(!StatusVeiculo.PRONTO_PARA_ENTRADA.equals(veiculo.getStatusVeiculo())) {
-			throw new NegocioException("Esse veiculo não pode ser dado entrada.");
-		}
+		validacaoEntradaVeiculo(veiculo);
 		
-		EntradaVeiculo ev = EntradaVeiculoMapper.converterToModel(request);
-		ev.setVeiculo(veiculo);
-		ev.setStatusVeiculo(StatusVeiculo.EM_LOJA);
+		EntradaVeiculo ev = EntradaVeiculoMapper.converterToModel(request, veiculo, StatusVeiculo.EM_LOJA);
 
 		EntradaVeiculo entradaEmLoja = repository.save(ev);
 		
 		veiculoService.updateStatus(veiculo, StatusVeiculo.EM_LOJA);
 		
 		return entradaEmLoja;
+	}
+
+	private void validacaoEntradaVeiculo(Veiculo veiculo) {
+		if(!StatusVeiculo.PRONTO_PARA_ENTRADA.equals(veiculo.getStatusVeiculo())) {
+			throw new NegocioException("Esse veiculo não pode ser dado entrada.");
+		}
 	}
 
 	public EntradaVeiculo updateStatusEntradaVeiculo(EntradaVeiculo entradaVeiculo, StatusVeiculo status) {
