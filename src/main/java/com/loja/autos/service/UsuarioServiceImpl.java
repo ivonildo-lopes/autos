@@ -2,6 +2,7 @@ package com.loja.autos.service;
 
 import java.util.UUID;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,7 +35,10 @@ public class UsuarioServiceImpl {
 		
 		Pessoa pessoa = this.pessoaService.getPessoa(PessoaMapper.usuarioToPessoaRequest(request));
 		
-		return repository.save(UsuarioMapper.conververToModel(request, pessoa));
+		Usuario usuario = UsuarioMapper.conververToModel(request, pessoa);
+		usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
+		
+		return repository.save(usuario);
 	}
 	
 	@Transactional
