@@ -14,12 +14,17 @@ public class AuthenticationService {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private TokenService tokenService;
 
-	public void login(@Valid AuthenticationDto request) {
+	public String login(@Valid AuthenticationDto request) {
 		
 		var usernamePassword = new UsernamePasswordAuthenticationToken(request.login(), request.password());
 		
 		var auth = authenticationManager.authenticate(usernamePassword);
+		
+		return tokenService.generateToken((UserSystem) auth.getPrincipal());
 		
 	}
 

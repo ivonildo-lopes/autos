@@ -138,5 +138,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 Arrays.asList(ex.getMessage()));
         return handleExceptionInternal(ex, obj, null, HttpStatus.BAD_REQUEST, request);
     }
+    
+    @ExceptionHandler({ JwtException.class })
+    public ResponseEntity<?> handleJwtCreateException(JwtException ex, WebRequest request) {
+        LOGGER.error(" =============== JwtException ==========================");
+        Object obj = ResponseDto.fromData(null, HttpStatus.FORBIDDEN, ex.getMessage(),
+                Arrays.asList(ex.getMessage()));
+        return handleExceptionInternal(ex, obj, null, HttpStatus.FORBIDDEN, request);
+    }
 
 }

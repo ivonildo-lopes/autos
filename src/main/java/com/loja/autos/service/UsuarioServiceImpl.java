@@ -65,7 +65,7 @@ public class UsuarioServiceImpl {
 		var usuarioBase = repository.findByEmail(email);
 		
 		if(!usuarioBase.isPresent()) {
-			throw new NegocioException("Erro ao tentar logar.");
+			throw new NegocioException("Usuario ou senha inválido");
 		}
 		
 		return new UserSystem(usuarioBase.get());
