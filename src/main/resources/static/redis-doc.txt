@@ -1,0 +1,17 @@
+acessar o container do redis
+docker exec -it redis bash
+
+usar o cli
+redis-cli
+
+comandos
+
+- ping
+
+
+- get [nome da chave]
+ex.: get nome
+
+
+- KEYS *
+ver todas as chaves

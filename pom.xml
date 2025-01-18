@@ -63,6 +63,9 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
+		
+		<!-- segurancara com jwt -->
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -72,6 +75,9 @@
 		  <artifactId>java-jwt</artifactId>
 		  <version>4.4.0</version>
 		</dependency>
+		
+		<!-- openApi -->
+		
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -88,6 +94,8 @@
 		    <version>2.2.26</version> <!-- Verifique e use a versão adequada -->
 		</dependency>
 		
+		<!-- observabilite -->
+		
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-actuator</artifactId>
@@ -98,6 +106,12 @@
 		    <groupId>io.micrometer</groupId>
 		    <artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency> 
+		
+		<!-- redis -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
 		
 	</dependencies>
 
