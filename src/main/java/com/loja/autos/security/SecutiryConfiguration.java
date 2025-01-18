@@ -29,7 +29,8 @@ public class SecutiryConfiguration {
 				.authorizeHttpRequests(authorize -> authorize
 						 .requestMatchers(
 	                                "/v3/api-docs/**",
-	                                "/swagger-ui/**"
+	                                "/swagger-ui/**",
+	                                "/actuator/**"
 	                        ).permitAll()
 						.requestMatchers(HttpMethod.POST, "/veiculo").hasAnyRole("ADMIN")
 						.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
