@@ -10,7 +10,9 @@ volumes:
   grafana_data:
     driver: local
   redis_data:
-    driver: local     
+    driver: local
+  rabbitmq_data:
+    driver: local       
 
 services:
   prometheus:
@@ -42,4 +44,18 @@ services:
     networks:
       - monitoring
     ports:
-      - "6379:6379"    
+      - "6379:6379"
+      
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    networks:
+      - monitoring
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq        
