@@ -27,5 +27,16 @@ public class AuthenticationService {
 		return tokenService.generateToken((UserSystem) auth.getPrincipal());
 		
 	}
+	
+	
+	public UserSystem logiBasic(@Valid AuthenticationDto request) {
+		
+		var usernamePassword = new UsernamePasswordAuthenticationToken(request.login(), request.password());
+		
+		var auth = authenticationManager.authenticate(usernamePassword);
+		
+		return (UserSystem) auth.getPrincipal();
+		
+	}
 
 }

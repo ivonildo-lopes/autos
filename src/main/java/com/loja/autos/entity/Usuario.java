@@ -48,5 +48,7 @@ public class Usuario implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	
+	private String secret2FA;
 
 }

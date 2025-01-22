@@ -33,7 +33,7 @@ public class SecutiryConfiguration {
 	                                "/actuator/**"
 	                        ).permitAll()
 						.requestMatchers(HttpMethod.POST, "/veiculo").hasAnyRole("ADMIN")
-						.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+						.requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
 						.requestMatchers(HttpMethod.POST, "/usuario").permitAll()
 						.anyRequest().authenticated()
 						)

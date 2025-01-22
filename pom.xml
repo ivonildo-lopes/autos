@@ -183,6 +183,13 @@
 	        <groupId>com.fasterxml.jackson.core</groupId>
 	        <artifactId>jackson-databind</artifactId>
 	    </dependency>
+	    
+	    <!-- google oauth -->
+	    <dependency>
+		    <groupId>com.warrenstrange</groupId>
+		    <artifactId>googleauth</artifactId>
+		    <version>1.5.0</version>
+		</dependency>
 				
 	</dependencies>
 	
