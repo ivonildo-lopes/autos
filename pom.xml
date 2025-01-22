@@ -150,8 +150,48 @@
 		    <version>5.7.1</version>
 		</dependency>
 		
+		<!-- AWS -->
+		<dependency>
+		    <groupId>software.amazon.awssdk</groupId>
+		    <artifactId>s3</artifactId>
+		    <version>2.30.2</version> 
+		</dependency>
 		
+		<dependency>
+		    <groupId>software.amazon.awssdk</groupId>
+		    <artifactId>auth</artifactId>
+		    <version>2.30.2</version>
+		</dependency>
+		
+		
+		 <!-- Biblioteca Apache HttpClient -->
+	    <dependency>
+	        <groupId>org.apache.httpcomponents.client5</groupId>
+	        <artifactId>httpclient5</artifactId>
+	        <version>5.4.1</version>
+	    </dependency>
+	    
+	    <!-- Adicione a dependência SSL se estiver faltando -->
+	    <dependency>
+	        <groupId>org.apache.httpcomponents.core5</groupId>
+	        <artifactId>httpcore5</artifactId>
+	        <version>5.3.2</version>
+	    </dependency>
+	    
+	    <!-- Biblioteca JSON para trabalhar com resposta da API -->
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.core</groupId>
+	        <artifactId>jackson-databind</artifactId>
+	    </dependency>
+				
 	</dependencies>
+	
+	<repositories>
+	    <repository>
+	        <id>central</id>
+	        <url>https://repo.maven.apache.org/maven2</url>
+	    </repository>
+	</repositories>
 
 	<build>
 		<plugins>
