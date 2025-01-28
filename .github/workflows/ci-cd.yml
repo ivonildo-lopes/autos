@@ -18,8 +18,10 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '17'
+        distribution: 'temurin'
+
+    - name: Display Maven Version
+      run: mvn --version
 
     - name: Build with Maven
       run: mvn clean -U install
-
-    # Adicione aqui qualquer outro passo necessário, como build do Docker, se aplicado
