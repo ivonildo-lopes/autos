@@ -63,7 +63,142 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
+		
+		<!-- segurancara com jwt -->
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>com.auth0</groupId>
+		  <artifactId>java-jwt</artifactId>
+		  <version>4.4.0</version>
+		</dependency>
+		
+		<!-- openApi -->
+		
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.8.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20240303</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.swagger.core.v3</groupId>
+		    <artifactId>swagger-annotations</artifactId>
+		    <version>2.2.26</version> <!-- Verifique e use a versão adequada -->
+		</dependency>
+		
+		<!-- observabilite -->
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		
+		  
+		  <dependency>
+		    <groupId>io.micrometer</groupId>
+		    <artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency> 
+		
+		<!-- redis -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		
+		<!-- rabbitMq -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+		
+		<!-- email -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		
+		<!-- zap -->
+		<dependency>
+		    <groupId>com.twilio.sdk</groupId>
+		    <artifactId>twilio</artifactId>
+		    <version>8.33.0</version>
+		</dependency>
+		
+		
+		<!-- spring batch -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-batch</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.batch</groupId>
+		    <artifactId>spring-batch-core</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.opencsv</groupId>
+		    <artifactId>opencsv</artifactId>
+		    <version>5.7.1</version>
+		</dependency>
+		
+		<!-- AWS -->
+		<dependency>
+		    <groupId>software.amazon.awssdk</groupId>
+		    <artifactId>s3</artifactId>
+		    <version>2.30.2</version> 
+		</dependency>
+		
+		<dependency>
+		    <groupId>software.amazon.awssdk</groupId>
+		    <artifactId>auth</artifactId>
+		    <version>2.30.2</version>
+		</dependency>
+		
+		
+		 <!-- Biblioteca Apache HttpClient -->
+	    <dependency>
+	        <groupId>org.apache.httpcomponents.client5</groupId>
+	        <artifactId>httpclient5</artifactId>
+	        <version>5.4.1</version>
+	    </dependency>
+	    
+	    <!-- Adicione a dependência SSL se estiver faltando -->
+	    <dependency>
+	        <groupId>org.apache.httpcomponents.core5</groupId>
+	        <artifactId>httpcore5</artifactId>
+	        <version>5.3.2</version>
+	    </dependency>
+	    
+	    <!-- Biblioteca JSON para trabalhar com resposta da API -->
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.core</groupId>
+	        <artifactId>jackson-databind</artifactId>
+	    </dependency>
+	    
+	    <!-- google oauth -->
+	    <dependency>
+		    <groupId>com.warrenstrange</groupId>
+		    <artifactId>googleauth</artifactId>
+		    <version>1.5.0</version>
+		</dependency>
+				
 	</dependencies>
+	
+	<repositories>
+	    <repository>
+	        <id>central</id>
+	        <url>https://repo.maven.apache.org/maven2</url>
+	    </repository>
+	</repositories>
 
 	<build>
 		<plugins>

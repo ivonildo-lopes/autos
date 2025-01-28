@@ -2,6 +2,7 @@ package com.loja.autos.service;
 
 import java.util.UUID;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.mappers.PessoaMapper;
 import com.loja.autos.mappers.UsuarioMapper;
 import com.loja.autos.repository.UsuarioRepository;
+import com.loja.autos.security.UserSystem;
 
 @Service
 public class UsuarioServiceImpl {
@@ -33,7 +35,10 @@ public class UsuarioServiceImpl {
 		
 		Pessoa pessoa = this.pessoaService.getPessoa(PessoaMapper.usuarioToPessoaRequest(request));
 		
-		return repository.save(UsuarioMapper.conververToModel(request, pessoa));
+		Usuario usuario = UsuarioMapper.conververToModel(request, pessoa);
+		usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
+		
+		return repository.save(usuario);
 	}
 	
 	@Transactional
@@ -54,6 +59,16 @@ public class UsuarioServiceImpl {
 	
 	public Usuario findByDocumento(String documento) {
 		return this.repository.findByDocumento(documento).orElseThrow(() -> new NegocioException("Esse usuario não existe."));
+	}
+	
+	public UserSystem loadUserByUsername(String email) {
+		var usuarioBase = repository.findByEmail(email);
+		
+		if(!usuarioBase.isPresent()) {
+			throw new NegocioException("Usuario ou senha inválido");
+		}
+		
+		return new UserSystem(usuarioBase.get());
 	}
 
 	private void verificaSeUsuarioJaExiste(UsuarioRequest request) {

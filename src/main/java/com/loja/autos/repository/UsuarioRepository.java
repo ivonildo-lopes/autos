@@ -8,9 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.loja.autos.entity.Usuario;
 
+
 public interface UsuarioRepository extends JpaRepository<Usuario, UUID> {
 	
 	@Query("SELECT u FROM Usuario u WHERE u.pessoa.documento = :documento")
 	Optional<Usuario> findByDocumento(String documento);
+	
+	Optional<Usuario> findByEmail(String email);
 
 }

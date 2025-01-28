@@ -1,0 +1,12 @@
+#rodar o docker-compose
+docker-compose up
+
+para acessar o prometheus
+http://localhost:9090/targets
+obs. aplicaçãoa api tem que ta rodando
+
+para acessar o grafana
+http://localhost:3000/
+obs. aplicaçãoa api tem que ta rodando
+
+estou usando o seguinte dashboard 14130

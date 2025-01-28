@@ -1,0 +1,5 @@
+apos rodar o docker-compose pode acessar 
+
+http://localhost:15672
+user: guest
+pass:guest
