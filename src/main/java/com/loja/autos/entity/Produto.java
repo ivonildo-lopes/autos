@@ -12,13 +12,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-@Builder
 @Entity
 @Table(name = "tb_produtos")
 public class Produto {
