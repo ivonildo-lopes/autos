@@ -61,7 +61,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         	msg = "Valor duplicado encontrado para o campo: CODIGO";
         } else if(message != null && message.contains("fk_tbtiporeceitaorigem_tborigemdebito")) {
         	msg = "Não foi possível realizar a exclusão! A Origem do Débito está sendo utilizada para um Tipo de Receita cadastrada.";
-        } 
+        } else if(message != null && message.contains("ALUGUEL")) {
+        	msg = "Valor duplicado encontrado para o campo: ALUGUEL";
+        }
         
         return msg;
     }
