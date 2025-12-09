@@ -16,25 +16,25 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-//@Setter
-//@Getter
-//@Builder
-//@Entity
-//@Table(name = "tb_produtos")
+@Setter
+@Getter
+@Builder
+@Entity
+@Table(name = "tb_produtos")
 public class Produto {
 	
-//	@Id
-//	@GeneratedValue
-//	@Column(name = "id_produto")
-//	private UUID id;
-//	
-//	private String nome;
-//	
-//	private String categoria;
-//	
-//	private BigDecimal preco;
-//	
-//	@Enumerated(EnumType.STRING)
-//	private TipoUnidade tipoUnidade;
+	@Id
+	@GeneratedValue
+	@Column(name = "id_produto")
+	private UUID id;
+	
+	private String nome;
+	
+	private String categoria;
+	
+	private BigDecimal preco;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoUnidade tipoUnidade;
 
 }
