@@ -12,29 +12,28 @@ import com.loja.autos.repository.ProdutoRepository;
 @Service
 public class ProdutoServiceImpl {
 	
-//	private final ProdutoRepository repository;
-//	
-//	ProdutoServiceImpl(ProdutoRepository repository) {
-//		this.repository = repository;
-//	}
-//	
-//	@Transactional
-//	public ProdutoResponse register(ProdutoRequest request) {
-//		
-//		var produtoModel = Produto.builder()
-//				.categoria(request.getCategoria())
-//				.nome(request.getNome())
-//				.preco(request.getPreco())
-//				.tipoUnidade(request.getTipoUnidade()).build();
-//		
-//		
-//		var produtoBase = repository.save(produtoModel);
-//		
-//		var response = new ProdutoResponse();
-//		BeanUtils.copyProperties(produtoBase, response);
-//		return response;
-//		
-//	}
+	private final ProdutoRepository repository;
+	
+	ProdutoServiceImpl(ProdutoRepository repository) {
+		this.repository = repository;
+	}
+	
+	@Transactional
+	public ProdutoResponse register(ProdutoRequest request) {
+		
+		var produtoModel =  new Produto();
+				produtoModel.setCategoria(request.getCategoria());
+				produtoModel.setNome(request.getNome());
+				produtoModel.setPreco(request.getPreco());
+				produtoModel.setTipoUnidade(request.getTipoUnidade());
+		
+		var produtoBase = repository.save(produtoModel);
+		
+		var response = new ProdutoResponse();
+		BeanUtils.copyProperties(produtoBase, response);
+		return response;
+		
+	}
 	
 //	@Transactional
 //	public CategoriaResponse update(CategoriaRequest request, UUID id) {

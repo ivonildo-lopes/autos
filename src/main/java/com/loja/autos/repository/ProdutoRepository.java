@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.loja.autos.entity.Produto;
 
-public interface ProdutoRepository  {
-//	public interface ProdutoRepository extends JpaRepository<Produto, UUID> {
+public interface ProdutoRepository extends JpaRepository<Produto, UUID> {
 
 }

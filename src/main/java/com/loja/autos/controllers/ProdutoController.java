@@ -21,10 +21,10 @@ public class ProdutoController {
 		this.service = service;
 	}
 	
-//	@PostMapping
-//	public ProdutoResponse save(@RequestBody @Valid ProdutoRequest request) {
-//		return service.register(request);
-//	}
+	@PostMapping
+	public ProdutoResponse save(@RequestBody @Valid ProdutoRequest request) {
+		return service.register(request);
+	}
 	
 //	@PutMapping(value = "/{id}")
 //	public CategoriaResponse update(@PathVariable(value = "id") UUID id, @RequestBody @Valid CategoriaRequest request) {
