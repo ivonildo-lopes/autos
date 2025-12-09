@@ -10,5 +10,7 @@ import com.loja.autos.entity.Veiculo;
 public interface VeiculoRepository extends JpaRepository<Veiculo, UUID> {
 
 	Optional<Veiculo> findByPlaca(String placa);
+	
+	long count();
 
 }

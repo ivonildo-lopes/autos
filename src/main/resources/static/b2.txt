@@ -1,0 +1,13 @@
+
+
+ao gerar o link atraves do endpoint que criamos para fazer o upload
+
+http://localhost:8080/b2/link-upload
+
+link_gerado agora é só da um POST pelo postman 
+POST https://dop-050-1018-08.backblaze.com/b2api/v2/b2_upload_file/c0000a3e272d80ed9d40000a/c005_v0501018_t0000
+passando o header o Authorization tbm é retornado pela api que criamos
+Authorization:4_11111ae7d0dd22a0000011111_01b9e111_111f11_upld_Obf4_Ts2Gcr21mFnkCk55AzqtDQ=
+X-Bz-File-Name:foto_5.png
+Content-Type:b2/x-auto
+X-Bz-Content-Sha1:do_not_verify

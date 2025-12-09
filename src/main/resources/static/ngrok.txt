@@ -1,0 +1,72 @@
+Passo a Passo para Usar o ngrok
+1. Baixar o ngrok
+ 
+ º Acesse o site oficial do ngrok.com
+ º Baixe o executável do ngrok para Windows.
+
+2. Instalar o ngrok
+ º Extraia o arquivo ZIP baixado para um diretório de sua escolha. O ngrok não precisa de instalação em si, basta descompactar.
+ 
+ ex.: d:/desenvolvimento/ngrok/..
+
+3. Obter Autenticação
+ º Crie uma conta no site do ngrok e faça login.
+ º Acesse o seu painel e copie o Token de Autenticação.
+
+4. Autenticar o ngrok no seu sistema
+ º Abra o Prompt de Comando ou PowerShell no diretório onde você descompactou o ngrok.
+ º Execute o comando abaixo, substituindo YOUR_AUTH_TOKEN pelo token copiado anteriormente:
+
+--------------------------------
+ngrok authtoken YOUR_AUTH_TOKEN
+--------------------------------
+
+5. Iniciar a aplicação Spring Boot
+ º Certifique-se de que sua aplicação Spring Boot está rodando corretamente no localhost, geralmente na porta 8080.
+
+
+6. Executar o ngrok
+ º No mesmo terminal ou em outro, execute o seguinte comando para iniciar o ngrok, encaminhando a porta 8080 (ou outra porta que sua aplicação esteja usando):
+
+-------------------------------- 
+ ngrok http 8080
+ --------------------------------
+ 
+7. Acessar o URL gerado
+ º Após executar o comando, você verá algo semelhante a isto:
+Forwarding                    https://abcd1234.ngrok.io -> http://localhost:8080
+ º O link https://abcd1234.ngrok.io é o URL externo que você pode compartilhar para permitir acesso à sua aplicação local.
+ 
+ 
+ 
+ 
+ POST https://2855-2804-29b8-5186-314-782e-ce92-b35-67e.ngrok-free.app/usuario
+ 
+ {
+    "email": "ivonildolopes@gmail.com",
+    "senha": "123456",
+    "role": "ADMIN",
+    "documento": "03174180333",
+    "nome": "ivonildo",
+    "dataNascimento": "1990-08-21",
+    "tipoDocumento": "CPF",
+    "enderecos": [
+        {
+            "cep": "60743780",
+            "logradouro": "rua das carnaubas",
+            "numero": "511",
+            "bairro": "passare",
+            "complemento": "apto 403 baoba",
+            "municipio": "fortaleza",
+            "estado": "ce"
+        }
+    ]
+}
+ 
+ 
+ POST https://2855-2804-29b8-5186-314-782e-ce92-b35-67e.ngrok-free.app/auth/login
+ 
+ {
+    "login":"ivonildolopes@gmail.com",
+    "password": "123456"
+}

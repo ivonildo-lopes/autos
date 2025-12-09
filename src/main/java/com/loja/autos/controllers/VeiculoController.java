@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.loja.autos.controllers.doc.VeiculoControllerDoc;
 import com.loja.autos.dto.request.VeiculoRequest;
 import com.loja.autos.dto.response.VeiculoResponse;
 import com.loja.autos.service.VeiculoServiceImpl;
@@ -18,7 +19,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "veiculo")
-public class VeiculoController {
+public class VeiculoController implements VeiculoControllerDoc {
 
 	private final VeiculoServiceImpl service;
 	
