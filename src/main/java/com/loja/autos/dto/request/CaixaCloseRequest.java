@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CaixaRequest {
+public class CaixaCloseRequest {
 
-	private BigDecimal valorInicial;
+	private BigDecimal valorFinal;
 }
