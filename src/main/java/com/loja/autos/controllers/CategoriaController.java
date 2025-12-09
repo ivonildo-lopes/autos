@@ -16,16 +16,14 @@ import com.loja.autos.entity.Funcionario;
 import com.loja.autos.service.FuncionarioServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "funcionario")
+@RequiredArgsConstructor
 public class CategoriaController {
 
 	private final FuncionarioServiceImpl service;
-	
-	CategoriaController(FuncionarioServiceImpl service) {
-		this.service = service;
-	}
 	
 	@PostMapping
 	public Funcionario save(@RequestBody @Valid FuncionarioRequest request) {

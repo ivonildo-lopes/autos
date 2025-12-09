@@ -13,17 +13,15 @@ import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.mappers.EntradaVeiculoMapper;
 import com.loja.autos.repository.EntradaVeiculoRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class EntradaVeiculoServiceImpl {
 
 	private final EntradaVeiculoRepository repository;
 	
 	private final VeiculoServiceImpl veiculoService;
-
-	EntradaVeiculoServiceImpl(EntradaVeiculoRepository repository, VeiculoServiceImpl veiculoService) {
-		this.repository = repository;
-		this.veiculoService = veiculoService;
-	}
 
 	@Transactional
 	public EntradaVeiculo register(EntradaVeiculoRequest request) {

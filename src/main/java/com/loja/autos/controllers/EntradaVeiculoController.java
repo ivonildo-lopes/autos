@@ -14,16 +14,14 @@ import com.loja.autos.entity.EntradaVeiculo;
 import com.loja.autos.service.EntradaVeiculoServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "entrada-veiculo")
+@RequiredArgsConstructor
 public class EntradaVeiculoController {
 
 	private final EntradaVeiculoServiceImpl service;
-	
-	EntradaVeiculoController(EntradaVeiculoServiceImpl service) {
-		this.service = service;
-	}
 	
 	@PostMapping
 	public EntradaVeiculo save(@RequestBody @Valid EntradaVeiculoRequest request) {

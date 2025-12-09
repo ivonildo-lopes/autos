@@ -17,16 +17,14 @@ import com.loja.autos.entity.Lancamento;
 import com.loja.autos.service.ContasAPagarServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "contas-pagar")
+@RequiredArgsConstructor
 public class ContasAPagarController {
 
 	private final ContasAPagarServiceImpl service;
-	
-	ContasAPagarController(ContasAPagarServiceImpl service) {
-		this.service = service;
-	}
 	
 	@PostMapping
 	public String save(@RequestBody @Valid ContasAPagarRequest request) {

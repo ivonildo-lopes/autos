@@ -14,16 +14,14 @@ import com.loja.autos.entity.Cliente;
 import com.loja.autos.service.ClienteServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "cliente")
+@RequiredArgsConstructor
 public class ClienteController {
 
 	private final ClienteServiceImpl service;
-	
-	ClienteController(ClienteServiceImpl service) {
-		this.service = service;
-	}
 	
 	@PostMapping
 	public Cliente save(@RequestBody @Valid ClienteRequest request) {

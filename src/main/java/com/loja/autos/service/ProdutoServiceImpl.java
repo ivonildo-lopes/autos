@@ -13,14 +13,13 @@ import com.loja.autos.entity.Produto;
 import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.repository.ProdutoRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ProdutoServiceImpl {
 	
 	private final ProdutoRepository repository;
-	
-	ProdutoServiceImpl(ProdutoRepository repository) {
-		this.repository = repository;
-	}
 	
 	@Transactional
 	public ProdutoResponse register(ProdutoRequest request) {

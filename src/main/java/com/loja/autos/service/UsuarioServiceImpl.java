@@ -16,17 +16,15 @@ import com.loja.autos.mappers.UsuarioMapper;
 import com.loja.autos.repository.UsuarioRepository;
 import com.loja.autos.security.UserSystem;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UsuarioServiceImpl {
 	
 	private final UsuarioRepository repository;
 	
 	private final PessoaServiceImpl pessoaService;
-	
-	UsuarioServiceImpl(UsuarioRepository repository, PessoaServiceImpl pessoaService) {
-		this.repository = repository;
-		this.pessoaService = pessoaService;
-	}
 	
 	@Transactional
 	public Usuario save(UsuarioRequest request) {

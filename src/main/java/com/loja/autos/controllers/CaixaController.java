@@ -17,16 +17,14 @@ import com.loja.autos.entity.Caixa;
 import com.loja.autos.service.CaixaServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "caixa")
+@RequiredArgsConstructor
 public class CaixaController {
 
 	private final CaixaServiceImpl service;
-	
-	CaixaController(CaixaServiceImpl service) {
-		this.service = service;
-	}
 	
 	@PostMapping("/open")
 	public String save(@RequestBody @Valid CaixaOpenRequest request) {

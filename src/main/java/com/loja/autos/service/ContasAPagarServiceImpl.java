@@ -15,17 +15,15 @@ import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.mappers.ContasAPagarMapper;
 import com.loja.autos.repository.LancamentoRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ContasAPagarServiceImpl {
 	
 	private final LancamentoRepository repository;
 	
 	private final CategoriaServiceImpl categoriaService;
-	
-	ContasAPagarServiceImpl(LancamentoRepository repository, CategoriaServiceImpl categoriaService) {
-		this.repository = repository;
-		this.categoriaService = categoriaService;
-	}
 	
 	@Transactional
 	public String register(ContasAPagarRequest request) {

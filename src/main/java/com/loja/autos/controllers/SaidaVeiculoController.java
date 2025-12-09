@@ -14,16 +14,14 @@ import com.loja.autos.entity.SaidaVeiculo;
 import com.loja.autos.service.SaidaVeiculoServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "saida-veiculo")
+@RequiredArgsConstructor
 public class SaidaVeiculoController {
 
 	private final SaidaVeiculoServiceImpl service;
-	
-	SaidaVeiculoController(SaidaVeiculoServiceImpl service) {
-		this.service = service;
-	}
 	
 	@PostMapping
 	public SaidaVeiculo save(@RequestBody @Valid SaidaVeiculoRequest request) {

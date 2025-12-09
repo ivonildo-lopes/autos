@@ -17,17 +17,15 @@ import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.repository.CaixaRepository;
 import com.loja.autos.repository.UsuarioRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CaixaServiceImpl {
 	
 	private final CaixaRepository repository;
 	
 	private final UsuarioRepository usuarioRepository;
-	
-	CaixaServiceImpl(CaixaRepository repository, UsuarioRepository usuarioRepository) {
-		this.repository = repository;
-		this.usuarioRepository = usuarioRepository;
-	}
 	
 	@Transactional
 	public String open(CaixaOpenRequest request) {

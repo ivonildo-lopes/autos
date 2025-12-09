@@ -14,16 +14,14 @@ import com.loja.autos.entity.Produto;
 import com.loja.autos.service.ProdutoServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "produto")
+@RequiredArgsConstructor
 public class ProdutoController {
 
 	private final ProdutoServiceImpl service;
-	
-	ProdutoController(ProdutoServiceImpl service) {
-		this.service = service;
-	}
 	
 	@PostMapping
 	public ProdutoResponse save(@RequestBody @Valid ProdutoRequest request) {

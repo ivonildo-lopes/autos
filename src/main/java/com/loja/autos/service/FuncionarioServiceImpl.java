@@ -13,17 +13,15 @@ import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.mappers.PessoaMapper;
 import com.loja.autos.repository.FuncionarioRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class FuncionarioServiceImpl {
 	
 	private final FuncionarioRepository repository;
 	
 	private final PessoaServiceImpl pessoaService;
-	
-	FuncionarioServiceImpl(FuncionarioRepository repository, PessoaServiceImpl pessoaService) {
-		this.repository = repository;
-		this.pessoaService = pessoaService;
-	}
 	
 	@Transactional
 	public Funcionario save(FuncionarioRequest request) {

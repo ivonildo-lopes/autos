@@ -16,16 +16,14 @@ import com.loja.autos.dto.response.CategoriaResponse;
 import com.loja.autos.service.CategoriaServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "categoria")
+@RequiredArgsConstructor
 public class FuncionarioController {
 
 	private final CategoriaServiceImpl service;
-	
-	FuncionarioController(CategoriaServiceImpl service) {
-		this.service = service;
-	}
 	
 	@PostMapping
 	public CategoriaResponse save(@RequestBody @Valid CategoriaRequest request) {

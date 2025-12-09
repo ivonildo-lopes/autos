@@ -15,7 +15,10 @@ import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.mappers.SaidaVeiculoMapper;
 import com.loja.autos.repository.SaidaVeiculoRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class SaidaVeiculoServiceImpl {
 
 	private final SaidaVeiculoRepository repository;
@@ -25,14 +28,6 @@ public class SaidaVeiculoServiceImpl {
 	private final EntradaVeiculoServiceImpl entradaService;
 	
 	private final ClienteServiceImpl clienteService;
-
-	SaidaVeiculoServiceImpl(SaidaVeiculoRepository repository, VeiculoServiceImpl veiculoService, 
-			EntradaVeiculoServiceImpl entradaService, ClienteServiceImpl clienteService) {
-		this.repository = repository;
-		this.veiculoService = veiculoService;
-		this.entradaService = entradaService;
-		this.clienteService = clienteService;
-	}
 
 	@Transactional
 	public SaidaVeiculo register(SaidaVeiculoRequest request) {

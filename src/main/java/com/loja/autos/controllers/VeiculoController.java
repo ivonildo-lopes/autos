@@ -16,16 +16,14 @@ import com.loja.autos.dto.response.VeiculoResponse;
 import com.loja.autos.service.VeiculoServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "veiculo")
+@RequiredArgsConstructor
 public class VeiculoController implements VeiculoControllerDoc {
 
 	private final VeiculoServiceImpl service;
-	
-	VeiculoController(VeiculoServiceImpl service) {
-		this.service = service;
-	}
 	
 	@PostMapping
 	public VeiculoResponse save(@RequestBody @Valid VeiculoRequest request) {

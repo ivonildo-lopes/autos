@@ -13,14 +13,13 @@ import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.mappers.CategoriaMapper;
 import com.loja.autos.repository.CategoriaRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CategoriaServiceImpl {
 	
 	private final CategoriaRepository repository;
-	
-	CategoriaServiceImpl(CategoriaRepository repository) {
-		this.repository = repository;
-	}
 	
 	@Transactional
 	public CategoriaResponse register(CategoriaRequest request) {

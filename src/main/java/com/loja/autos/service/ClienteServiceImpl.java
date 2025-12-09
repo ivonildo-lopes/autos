@@ -14,17 +14,15 @@ import com.loja.autos.mappers.ClienteMapper;
 import com.loja.autos.mappers.PessoaMapper;
 import com.loja.autos.repository.ClienteRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ClienteServiceImpl {
 	
 	private final ClienteRepository repository;
 	
 	private final PessoaServiceImpl pessoaService;
-	
-	ClienteServiceImpl(ClienteRepository repository, PessoaServiceImpl pessoaService) {
-		this.repository = repository;
-		this.pessoaService = pessoaService;
-	}
 	
 	@Transactional
 	public Cliente save(ClienteRequest request) {

@@ -15,16 +15,14 @@ import com.loja.autos.entity.Usuario;
 import com.loja.autos.service.UsuarioServiceImpl;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "usuario")
+@RequiredArgsConstructor
 public class UsuarioController {
 
 	private final UsuarioServiceImpl service;
-	
-	UsuarioController(UsuarioServiceImpl service) {
-		this.service = service;
-	}
 	
 	@PostMapping
 	public Usuario save(@RequestBody @Valid UsuarioRequest request) {

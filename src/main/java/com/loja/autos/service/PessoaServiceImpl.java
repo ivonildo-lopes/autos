@@ -15,14 +15,13 @@ import com.loja.autos.entity.Pessoa;
 import com.loja.autos.mappers.PessoaMapper;
 import com.loja.autos.repository.PessoaRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class PessoaServiceImpl {
 	
 	private final PessoaRepository repository;
-	
-	PessoaServiceImpl(PessoaRepository repository) {
-		this.repository = repository;
-	}
 	
 	public Pessoa getPessoa(PessoaRequest requestDto) {
 		Pessoa pessoaCadastrada = findByDocumento(requestDto);
