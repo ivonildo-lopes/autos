@@ -1,5 +1,8 @@
 package com.loja.autos.service;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.loja.autos.dto.request.ProdutoRequest;
 import com.loja.autos.dto.response.ProdutoResponse;
 import com.loja.autos.entity.Produto;
+import com.loja.autos.exceptions.NegocioException;
 import com.loja.autos.repository.ProdutoRepository;
 
 @Service
@@ -35,25 +39,28 @@ public class ProdutoServiceImpl {
 		
 	}
 	
-//	@Transactional
-//	public CategoriaResponse update(CategoriaRequest request, UUID id) {
-//
-//		var categoriaBAse = findById(id);
-//		
-//		var veiculo = CategoriaMapper.conververToModel(request, categoriaBAse);
-//		
-//		var response = CategoriaMapper.conververToResponse(repository.save(veiculo));
-//		
-//		return response;
-//	}
-//	
-//	
-//	public Categoria findById(UUID id) {
-//		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Essa categoria não existe."));
-//	}
-//	
-//	public List<CategoriaResponse> findAll() {
-//		return CategoriaMapper.conververToResponse(repository.findAll());
-//	}
+	@Transactional
+	public ProdutoResponse update(ProdutoRequest request, UUID id) {
+
+		var produtoBase = findById(id);
+		BeanUtils.copyProperties(request, produtoBase, "id");
+		
+		
+		repository.save(produtoBase);
+		
+		var response = new ProdutoResponse();
+		BeanUtils.copyProperties(produtoBase, response);
+		
+		return response;
+	}
+	
+	
+	public Produto findById(UUID id) {
+		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse produto não existe."));
+	}
+	
+	public List<Produto> findAll() {
+		return repository.findAll();
+	}
 
 }

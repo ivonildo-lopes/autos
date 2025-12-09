@@ -1,5 +1,8 @@
 package com.loja.autos.controllers;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.loja.autos.dto.request.ProdutoRequest;
 import com.loja.autos.dto.response.ProdutoResponse;
+import com.loja.autos.entity.Produto;
 import com.loja.autos.service.ProdutoServiceImpl;
 
 import jakarta.validation.Valid;
@@ -31,9 +35,9 @@ public class ProdutoController {
 //		return service.update(request, id);
 //	}
 //	
-//	@GetMapping
-//	public List<CategoriaResponse> findAll() {
-//		return service.findAll();
-//	}
+	@GetMapping
+	public List<Produto> findAll() {
+		return service.findAll();
+	}
 	
 }
