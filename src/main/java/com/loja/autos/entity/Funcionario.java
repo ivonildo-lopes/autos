@@ -14,32 +14,32 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-//@Setter
-//@Getter
-//@Builder
-//@Entity
-//@Table(name = "tb_funcionarios")
+@Setter
+@Getter
+@Builder
+@Entity
+@Table(name = "tb_funcionarios")
 public class Funcionario {
 	
-//	@Id
-//	@GeneratedValue
-//	@Column(name = "id_funcionario")
-//	private UUID id;
-//	
-//	@OneToOne
-//	@JoinColumn(name = "id_pessoa")
-//	private Pessoa pessoa;
-//	
-//	private String email;
-//	
-//	private String telefone;
-//	
-//	private String cargo;
-//	
-//	private LocalDate dataAdmissao;
-//	
-//	private LocalDate dataDemissao;
-//	
-//	private boolean ativo = true;
+	@Id
+	@GeneratedValue
+	@Column(name = "id_funcionario")
+	private UUID id;
+	
+	@OneToOne
+	@JoinColumn(name = "id_pessoa")
+	private Pessoa pessoa;
+	
+	private String email;
+	
+	private String telefone;
+	
+	private String cargo;
+	
+	private LocalDate dataAdmissao;
+	
+	private LocalDate dataDemissao;
+	
+	private boolean ativo = true;
 
 }
