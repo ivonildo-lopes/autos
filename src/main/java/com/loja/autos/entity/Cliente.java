@@ -16,10 +16,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "tb_cliente")
+@Table(name = "tb_clientes")
 public class Cliente implements Serializable {
-
-	private static final long serialVersionUID = -5546722359404266290L;
 
 	@Id
 	@GeneratedValue

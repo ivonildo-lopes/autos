@@ -18,26 +18,26 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
-@Builder
-@Entity
-@Table(name = "tb_pagamentos_vendas")
+//@Setter
+//@Getter
+//@Builder
+//@Entity
+//@Table(name = "tb_pagamentos_vendas")
 public class PagamentoVenda {
 	
-	@Id
-	@GeneratedValue
-	@Column(name = "id_pagamento_venda")
-	private UUID id;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_venda", nullable = false)
-	private Venda venda;
-	
-	@Enumerated(EnumType.STRING)
-	private FormaPagamento formaPagamento;
-	
-	@Column(precision = 12, scale = 2)
-	private BigDecimal valorPago;
+//	@Id
+//	@GeneratedValue
+//	@Column(name = "id_pagamento_venda")
+//	private UUID id;
+//	
+//	@ManyToOne
+//	@JoinColumn(name = "id_venda", nullable = false)
+//	private Venda venda;
+//	
+//	@Enumerated(EnumType.STRING)
+//	private FormaPagamento formaPagamento;
+//	
+//	@Column(precision = 12, scale = 2)
+//	private BigDecimal valorPago;
 	
 }

@@ -16,36 +16,36 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
-@Builder
-@Entity
-@Table(name = "tb_caixas")
+//@Setter
+//@Getter
+//@Builder
+//@Entity
+//@Table(name = "tb_caixas")
 public class Caixa {
 	
-	@Id
-	@GeneratedValue
-	@Column(name = "id_caixa")
-	private UUID id;
-	
-	private LocalDate dataAbertura;
-	
-	private LocalTime horaAbertura;
-	
-	@Column(precision = 12, scale = 2)
-	private BigDecimal valorInicial = BigDecimal.ZERO;
-	
-	private LocalDate dataFechamento;
-	
-	private LocalTime horaFechamento;
-	
-	@Column(precision = 12, scale = 2)
-	private BigDecimal valorFinal;
-	
-	private String observacoes;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_usuario", nullable = false)
-	private Usuario usuario;
+//	@Id
+//	@GeneratedValue
+//	@Column(name = "id_caixa")
+//	private UUID id;
+//	
+//	private LocalDate dataAbertura;
+//	
+//	private LocalTime horaAbertura;
+//	
+//	@Column(precision = 12, scale = 2)
+//	private BigDecimal valorInicial = BigDecimal.ZERO;
+//	
+//	private LocalDate dataFechamento;
+//	
+//	private LocalTime horaFechamento;
+//	
+//	@Column(precision = 12, scale = 2)
+//	private BigDecimal valorFinal;
+//	
+//	private String observacoes;
+//	
+//	@ManyToOne
+//	@JoinColumn(name = "id_usuario", nullable = false)
+//	private Usuario usuario;
 
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.loja.autos.entity.Caixa;
 
-public interface CaixaRepository extends JpaRepository<Caixa, UUID> {
+public interface CaixaRepository {
+//public interface CaixaRepository extends JpaRepository<Caixa, UUID> {
 
 }

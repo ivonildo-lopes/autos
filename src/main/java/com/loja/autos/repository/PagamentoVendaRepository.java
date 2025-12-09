@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.loja.autos.entity.PagamentoVenda;
 
-public interface PagamentoVendaRepository extends JpaRepository<PagamentoVenda, UUID> {
+public interface PagamentoVendaRepository  {
+//	public interface PagamentoVendaRepository extends JpaRepository<PagamentoVenda, UUID> {
 
 }

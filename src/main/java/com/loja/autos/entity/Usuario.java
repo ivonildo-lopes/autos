@@ -23,8 +23,6 @@ import lombok.Setter;
 @Table(name = "tb_usuario")
 public class Usuario implements Serializable {
 	
-	private static final long serialVersionUID = 2552084238061679520L;
-
 	@Id
 	@GeneratedValue
 	private UUID id;

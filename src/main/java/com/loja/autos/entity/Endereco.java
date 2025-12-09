@@ -19,10 +19,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "tb_endereco")
+@Table(name = "tb_enderecos")
 public class Endereco implements Serializable {
-
-	private static final long serialVersionUID = -5796359646316276457L;
 
 	@Id
 	@GeneratedValue

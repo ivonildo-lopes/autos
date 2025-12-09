@@ -21,8 +21,6 @@ import lombok.Setter;
 @Table(name = "tb_saida_veiculo")
 public class SaidaVeiculo implements Serializable {
 	
-	private static final long serialVersionUID = -7200749465051107330L;
-
 	@Id
 	@GeneratedValue
 	@Column(name = "id_saida_veiculo")
