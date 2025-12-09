@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 
 import com.loja.autos.dto.request.ClienteRequest;
 import com.loja.autos.dto.request.EnderecoRequest;
+import com.loja.autos.dto.request.FuncionarioRequest;
 import com.loja.autos.dto.request.PessoaRequest;
 import com.loja.autos.dto.request.UsuarioRequest;
 import com.loja.autos.entity.Endereco;
@@ -22,6 +23,12 @@ public class PessoaMapper {
 	}
 	
 	public static PessoaRequest clienteToPessoaRequest(ClienteRequest request) {
+		PessoaRequest pessoa = new PessoaRequest();
+		BeanUtils.copyProperties(request, pessoa);
+		return pessoa;
+	}
+	
+	public static PessoaRequest funcionarioToPessoaRequest(FuncionarioRequest request) {
 		PessoaRequest pessoa = new PessoaRequest();
 		BeanUtils.copyProperties(request, pessoa);
 		return pessoa;

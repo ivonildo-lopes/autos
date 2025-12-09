@@ -11,34 +11,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.loja.autos.dto.request.FuncionarioRequest;
-import com.loja.autos.entity.Funcionario;
-import com.loja.autos.service.FuncionarioServiceImpl;
+import com.loja.autos.dto.request.CategoriaRequest;
+import com.loja.autos.dto.response.CategoriaResponse;
+import com.loja.autos.service.CategoriaServiceImpl;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "funcionario")
-public class CategoriaController {
+@RequestMapping(value = "categoria")
+public class FuncionarioController {
 
-	private final FuncionarioServiceImpl service;
+	private final CategoriaServiceImpl service;
 	
-	CategoriaController(FuncionarioServiceImpl service) {
+	FuncionarioController(CategoriaServiceImpl service) {
 		this.service = service;
 	}
 	
 	@PostMapping
-	public Funcionario save(@RequestBody @Valid FuncionarioRequest request) {
-		return service.save(request);
+	public CategoriaResponse save(@RequestBody @Valid CategoriaRequest request) {
+		return service.register(request);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public Funcionario update(@PathVariable(value = "id") UUID id, @RequestBody @Valid FuncionarioRequest request) {
+	public CategoriaResponse update(@PathVariable(value = "id") UUID id, @RequestBody @Valid CategoriaRequest request) {
 		return service.update(request, id);
 	}
 	
 	@GetMapping
-	public List<Funcionario> findAll() {
+	public List<CategoriaResponse> findAll() {
 		return service.findAll();
 	}
 	
