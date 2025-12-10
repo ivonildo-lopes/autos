@@ -1,6 +1,7 @@
 package com.loja.autos.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -31,4 +32,16 @@ public class Cliente implements Serializable {
 	private String email;
 	
 	private String telefone;
+	
+	@Column(nullable = true)
+	private LocalDate dataUltimaCompra;
+	
+	@Column(nullable = true)
+	private Boolean notificacaoAusencia1;
+	
+	@Column(nullable = true)
+	private Boolean notificacaoAusencia2;
+	
+	@Column(nullable = true)
+	private Boolean ativo = true;
 }

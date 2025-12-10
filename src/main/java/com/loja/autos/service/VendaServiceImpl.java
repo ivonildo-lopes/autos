@@ -1,6 +1,7 @@
 package com.loja.autos.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -11,6 +12,7 @@ import com.loja.autos.dto.request.ItemVendaRequest;
 import com.loja.autos.dto.request.PagamentoRequest;
 import com.loja.autos.dto.request.VendaRequest;
 import com.loja.autos.entity.Caixa;
+import com.loja.autos.entity.Cliente;
 import com.loja.autos.entity.ItemVenda;
 import com.loja.autos.entity.PagamentoVenda;
 import com.loja.autos.entity.Produto;
@@ -47,7 +49,7 @@ public class VendaServiceImpl {
 	
 	
 	@Transactional
-	public Venda create(VendaRequest request) {
+	public String create(VendaRequest request) {
 		
 		Caixa caixa = caixaRepository.findById(request.getIdCaixa()).orElseThrow(() -> new NegocioException("Esse caixa não existe."));
 		
@@ -59,8 +61,10 @@ public class VendaServiceImpl {
 		venda.setDataHora(LocalDateTime.now());
 		
 		//cliente
+		Cliente cliente = null;
 		if(request.getIdCliente() != null) {
-			clienteRepository.findById(request.getIdCliente()).ifPresent(venda::setCliente);
+			cliente = clienteRepository.findById(request.getIdCliente()).get();
+			venda.setCliente(cliente);
 		}
 		
 		BigDecimal somaTodosItens = BigDecimal.ZERO;
@@ -117,11 +121,17 @@ public class VendaServiceImpl {
 			somaValoresPagamentos = somaValoresPagamentos.add(pagamentoRequest.getValorPago());
 		}
 		
+		cliente.setDataUltimaCompra(LocalDate.now());
+		cliente.setNotificacaoAusencia1(null);
+		cliente.setNotificacaoAusencia2(null);
+		cliente.setAtivo(true);
+		clienteRepository.save(cliente);
+		
 		if(somaValoresPagamentos.compareTo(valorTotalVenda) != 0) {
 			throw new NegocioException("Soma dos pagamentos (" +  somaValoresPagamentos + ") != total da venda ( "  + valorTotalVenda + " ) falta " + MoneyUtil.converterString(valorTotalVenda.subtract(somaValoresPagamentos)));
 		}
 		
-		return vendaBase;
+		return "Venda Realizada com sucesso";
 	}
 	
 	public Venda findById(UUID id) {

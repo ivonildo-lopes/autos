@@ -25,7 +25,7 @@ public class VendaController {
 	private final VendaServiceImpl service;
 	
 	@PostMapping
-	public Venda save(@RequestBody @Valid VendaRequest request) {
+	public String save(@RequestBody @Valid VendaRequest request) {
 		return service.create(request);
 	}
 	
