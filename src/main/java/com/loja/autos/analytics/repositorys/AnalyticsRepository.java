@@ -54,5 +54,12 @@ public interface AnalyticsRepository extends JpaRepository<Venda, UUID> {
 			    GROUP BY fp.formaPagamento
 			""")
 	List<Object[]> vendasPorFormaPagamento();
+	
+	@Query(value = """
+		    SELECT SUM(v.valor_total)
+		    FROM tb_vendas v
+		    WHERE DATE(v.data_hora) = CURRENT_DATE
+		    """, nativeQuery = true)
+		BigDecimal totalVendidoHoje();
 
 }

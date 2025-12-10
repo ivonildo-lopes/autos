@@ -9,6 +9,7 @@ import com.loja.autos.analytics.dto.CaixaAtualDto;
 import com.loja.autos.analytics.dto.ClienteTopDto;
 import com.loja.autos.analytics.dto.ProdutoMaisVendidoDto;
 import com.loja.autos.analytics.dto.TicketMedioDto;
+import com.loja.autos.analytics.dto.TotalVendidoDiaAtualDto;
 import com.loja.autos.analytics.dto.VendaDiaDto;
 import com.loja.autos.analytics.dto.VendasFormaPagamentoDto;
 import com.loja.autos.analytics.repositorys.AnalyticsRepository;
@@ -70,5 +71,13 @@ public class AnalyticsService {
                         .totalVendido((BigDecimal) r[2])
                         .build()
         ).toList();
+    }
+    
+    public TotalVendidoDiaAtualDto totalVendidoDia() {
+    	BigDecimal valor = repository.totalVendidoHoje();
+    	
+        return TotalVendidoDiaAtualDto.builder()
+                .totalVendido(valor)
+                .build();
     }
 }
