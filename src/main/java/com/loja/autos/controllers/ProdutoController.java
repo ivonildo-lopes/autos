@@ -1,16 +1,19 @@
 package com.loja.autos.controllers;
 
-import java.util.List;
+import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.loja.autos.dto.ResponseDto;
 import com.loja.autos.dto.request.ProdutoRequest;
-import com.loja.autos.dto.response.ProdutoResponse;
-import com.loja.autos.entity.Produto;
 import com.loja.autos.service.ProdutoServiceImpl;
 
 import jakarta.validation.Valid;
@@ -24,18 +27,18 @@ public class ProdutoController {
 	private final ProdutoServiceImpl service;
 	
 	@PostMapping
-	public ProdutoResponse save(@RequestBody @Valid ProdutoRequest request) {
-		return service.register(request);
+	public ResponseEntity<?> save(@RequestBody @Valid ProdutoRequest request) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(ResponseDto.fromData(service.register(request), HttpStatus.CREATED, "Produto cadastrado com sucesso"));
 	}
 	
-//	@PutMapping(value = "/{id}")
-//	public CategoriaResponse update(@PathVariable(value = "id") UUID id, @RequestBody @Valid CategoriaRequest request) {
-//		return service.update(request, id);
-//	}
-//	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<?> update(@PathVariable(value = "id") UUID id, @RequestBody @Valid ProdutoRequest request) {
+		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.update(request, id), HttpStatus.OK, "Produto atualizado com sucesso"));
+	}
+	
 	@GetMapping
-	public List<Produto> findAll() {
-		return service.findAll();
+	public ResponseEntity<?> findAll() {
+		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.findAll(), HttpStatus.OK, "Lista de Funcionarios"));
 	}
 	
 }

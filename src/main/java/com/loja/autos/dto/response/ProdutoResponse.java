@@ -5,11 +5,17 @@ import java.util.UUID;
 
 import com.loja.autos.enums.TipoUnidade;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProdutoResponse {
 	
 	private UUID id;

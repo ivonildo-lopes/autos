@@ -2,6 +2,7 @@ package com.loja.autos.service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -58,8 +59,14 @@ public class ProdutoServiceImpl {
 		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse produto não existe."));
 	}
 	
-	public List<Produto> findAll() {
-		return repository.findAll();
+	public List<ProdutoResponse> findAll() {
+		return repository.findAll().stream().map(p -> ProdutoResponse.builder()
+				.id(p.getId())
+				.nome(p.getNome())
+				.categoria(p.getCategoria())
+				.preco(p.getPreco())
+				.tipoUnidade(p.getTipoUnidade())
+				.build()).collect(Collectors.toList());
 	}
 
 }
