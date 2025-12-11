@@ -75,7 +75,12 @@ public class CaixaServiceImpl {
 	public List<CaixaResponse> findAll() {
 		var lista = repository.findAll();
 		
-		return lista.stream().map(c -> CaixaResponse.builder()
+		return lista.stream().map(c -> converterResponse(c))
+				.collect(Collectors.toList());
+	}
+
+	public CaixaResponse converterResponse(Caixa c) {
+		return CaixaResponse.builder()
 				.dataAbertura(c.getDataAbertura())
 				.horaAbertura(c.getHoraAbertura())
 				.dataFechamento(c.getDataFechamento())
@@ -85,8 +90,7 @@ public class CaixaServiceImpl {
 				.valorFinal(c.getValorFinal())
 				.observacoes(c.getObservacoes())
 				.id(c.getId())
-				.build())
-				.collect(Collectors.toList());
+				.build();
 	}
 
 }

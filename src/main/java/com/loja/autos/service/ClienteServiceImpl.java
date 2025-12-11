@@ -1,5 +1,6 @@
 package com.loja.autos.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -56,6 +57,16 @@ public class ClienteServiceImpl {
 		return clienteUpdated.getId().toString() + " Cliente atualizado com sucesso";
 	}
 	
+	@Transactional
+	public void saveClientPosVenda(Cliente cliente) {
+		
+		cliente.setDataUltimaCompra(LocalDate.now());
+		cliente.setNotificacaoAusencia1(null);
+		cliente.setNotificacaoAusencia2(null);
+		cliente.setAtivo(true);
+		repository.save(cliente);
+	}
+	
 	
 	public Cliente findById(UUID id) {
 		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse cliente não existe."));
@@ -64,15 +75,19 @@ public class ClienteServiceImpl {
 	public List<ClienteResponse> findAll() {
 		List<Cliente> lista = this.repository.findAll();
 		
-		return lista.stream().map(c -> ClienteResponse.builder()
+		return lista.stream().map(c -> converterResponse(c)
+				).collect(Collectors.toList());
+	}
+
+	public ClienteResponse converterResponse(Cliente c) {
+		return ClienteResponse.builder()
 				.nome(c.getPessoa().getNome())
 				.id(c.getId())
 				.ativo(c.getAtivo())
 				.dataNascimento(c.getPessoa().getDataNascimento())
 				.email(c.getEmail())
 				.telefone(c.getTelefone())
-				.build()
-				).collect(Collectors.toList());
+				.build();
 	}
 
 	private void verificaSeClienteJaExiste(ClienteRequest request) {

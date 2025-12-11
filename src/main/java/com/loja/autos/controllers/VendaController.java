@@ -1,8 +1,9 @@
 package com.loja.autos.controllers;
 
-import java.util.List;
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.loja.autos.dto.ResponseDto;
 import com.loja.autos.dto.request.VendaRequest;
-import com.loja.autos.entity.Venda;
 import com.loja.autos.service.VendaServiceImpl;
 
 import jakarta.validation.Valid;
@@ -25,18 +26,18 @@ public class VendaController {
 	private final VendaServiceImpl service;
 	
 	@PostMapping
-	public String save(@RequestBody @Valid VendaRequest request) {
-		return service.create(request);
+	public ResponseEntity<?> save(@RequestBody @Valid VendaRequest request) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(ResponseDto.fromData(service.create(request), HttpStatus.CREATED, "Venda registrada com sucesso"));
 	}
 	
 	@GetMapping(value = "/{id}")
-	public Venda update(@PathVariable(value = "id") UUID id) {
-		return service.findById(id);
+	public ResponseEntity<?> consultaDetalheVenda(@PathVariable(value = "id") UUID id) {
+		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.consultaDetalhe(id), HttpStatus.OK, "Detalhe da venda"));
 	}
 	
 	@GetMapping
-	public List<Venda> findAll() {
-		return service.findAll();
+	public ResponseEntity<?> findAll() {
+		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.findAll(), HttpStatus.OK, "Todas as vendas"));
 	}
 	
 }
