@@ -86,19 +86,6 @@ public class ContasAPagarServiceImpl {
 		return repository.findAllLancamento(TipoLancamento.CONTAS_PAGAR.toString());
 	}
 	
-//	@Transactional
-//	public CategoriaResponse update(CategoriaRequest request, UUID id) {
-//
-//		var categoriaBAse = findById(id);
-//		
-//		var veiculo = CategoriaMapper.conververToModel(request, categoriaBAse);
-//		
-//		var response = CategoriaMapper.conververToResponse(repository.save(veiculo));
-//		
-//		return response;
-//	}
-//	
-//	
 	private Lancamento findById(UUID id) {
 		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Essa categoria não existe."));
 	}

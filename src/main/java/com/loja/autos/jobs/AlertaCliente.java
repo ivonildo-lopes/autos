@@ -32,9 +32,8 @@ public class AlertaCliente {
        for(Cliente cliente : clientesAusente) {
     	   
     	   if(cliente.getNotificacaoAusencia1() == null) {
-    		   emailService.sendSimpleEmail(cliente.getEmail(), "ESTAMOS SENTIDO A SUA FALTA AQUI NA BARBEARIA ", 
-    				 cliente.getPessoa().getNome() +  " NÓS DA RED MONKEY PERCEBEMOS QUE VOCÊ TA AUSENTE A MAIS DE 30 DIAS,"
-    				   + " VENHA APROVEITAR NOSSOS SERVIÇOS ESTAMOS COM DESCONTO DE 10% AGUARDAMOS SEU AGENDAMENTO");
+    		   emailService.sendSimpleEmail(cliente.getEmail(), "xxxxxxxxxxxxxxxx titulo xxxxxxxxxxxxxxxxxxxxxxxx", 
+    				   "xxxxxxxxxxxxxxxxxxxxxxxxx CORPO xxxxxxxxxxxxxxxxxxxxxxxxxxxx ");
     	   cliente.setNotificacaoAusencia1(true);
     	   repository.save(cliente);
     	   }
@@ -52,9 +51,8 @@ public class AlertaCliente {
        for(Cliente cliente : clientesAusente) {
     	   
     	   if(cliente.getNotificacaoAusencia2() == null) {
-    		   emailService.sendSimpleEmail(cliente.getEmail(), "ESTAMOS SENTIDO A SUA FALTA AQUI NA BARBEARIA", 
-    				   "NÓS DA RED MONKEY PERCEBEMOS QUE VOCÊ TA AUSENTE A MAIS DE 30 DIAS,"
-    				   + " VENHA APROVEITAR NOSSOS SERVIÇOS ESTAMOS COM DESCONTO DE 20% AGUARDAMOS SEU AGENDAMENTO");
+    		   emailService.sendSimpleEmail(cliente.getEmail(), "xxxxxxxxxxxxxxxx titulo xxxxxxxxxxxxxxxxxxxxxxxx", 
+    				   "xxxxxxxxxxxxxxxxxxxxxxxxx CORPO xxxxxxxxxxxxxxxxxxxxxxxxxxxx ");
     	   cliente.setNotificacaoAusencia2(true);
     	   repository.save(cliente);
     	   }

@@ -10,7 +10,7 @@ import com.loja.autos.entity.Lancamento;
 
 public interface LancamentoRepository extends JpaRepository<Lancamento, UUID> {
 
-	@Query(nativeQuery = true, value = "select * from tb_lancamentos l where l.tipo_lancacamento = :tipoLancamento")
+	@Query(nativeQuery = true, value = "select * from tb_lancamentos l where l.tipo_lancamento = :tipoLancamento")
 	List<Lancamento> findAllLancamento(String tipoLancamento);
 
 }

@@ -12,7 +12,7 @@ public class ContasAPagarMapper {
 	
 	public static Lancamento conververToModel(ContasAPagarRequest request, Categoria categoria) {
 		Lancamento lancamento = new Lancamento();
-		lancamento.setTipoLancacamento(TipoLancamento.CONTAS_PAGAR);
+		lancamento.setTipoLancamento(TipoLancamento.CONTAS_PAGAR);
 		lancamento.setValor(request.getValor());
 		lancamento.setCategoria(categoria);
 		lancamento.setDescricao(request.getDescricao());

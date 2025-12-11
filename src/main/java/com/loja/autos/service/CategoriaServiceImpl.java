@@ -43,6 +43,10 @@ public class CategoriaServiceImpl {
 		return response;
 	}
 	
+	public CategoriaResponse consultaPorId(UUID id) {
+		return CategoriaMapper.conververToResponse(findById(id));
+	}
+	
 	
 	public Categoria findById(UUID id) {
 		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Essa categoria não existe."));

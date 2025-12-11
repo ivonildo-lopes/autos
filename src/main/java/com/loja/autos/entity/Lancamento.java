@@ -36,7 +36,7 @@ public class Lancamento implements Serializable {
 	private UUID id;
 		
 	@Enumerated(EnumType.STRING)
-	private TipoLancamento tipoLancacamento;
+	private TipoLancamento tipoLancamento;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusLancamento statusLancamento;

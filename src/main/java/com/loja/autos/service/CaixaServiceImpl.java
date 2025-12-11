@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.loja.autos.dto.request.CaixaCloseRequest;
 import com.loja.autos.dto.request.CaixaOpenRequest;
+import com.loja.autos.dto.response.CaixaResponse;
 import com.loja.autos.entity.Caixa;
 import com.loja.autos.entity.Usuario;
 import com.loja.autos.exceptions.NegocioException;
@@ -70,8 +72,21 @@ public class CaixaServiceImpl {
 		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse caixa não existe."));
 	}
 	
-	public List<Caixa> findAll() {
-		return repository.findAll();
+	public List<CaixaResponse> findAll() {
+		var lista = repository.findAll();
+		
+		return lista.stream().map(c -> CaixaResponse.builder()
+				.dataAbertura(c.getDataAbertura())
+				.horaAbertura(c.getHoraAbertura())
+				.dataFechamento(c.getDataFechamento())
+				.horaFechamento(c.getHoraFechamento())
+				.nomeUsuario(c.getUsuario().getPessoa().getNome())
+				.valorInicial(c.getValorInicial())
+				.valorFinal(c.getValorFinal())
+				.observacoes(c.getObservacoes())
+				.id(c.getId())
+				.build())
+				.collect(Collectors.toList());
 	}
 
 }
