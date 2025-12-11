@@ -2,11 +2,13 @@ package com.loja.autos.service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.loja.autos.dto.request.FuncionarioRequest;
+import com.loja.autos.dto.response.FuncionarioResponse;
 import com.loja.autos.entity.Funcionario;
 import com.loja.autos.entity.Pessoa;
 import com.loja.autos.exceptions.NegocioException;
@@ -24,7 +26,7 @@ public class FuncionarioServiceImpl {
 	private final PessoaServiceImpl pessoaService;
 	
 	@Transactional
-	public Funcionario save(FuncionarioRequest request) {
+	public String save(FuncionarioRequest request) {
 		
 		verificaSeFuncionarioJaExiste(request);
 		
@@ -37,11 +39,13 @@ public class FuncionarioServiceImpl {
 		funcionario.setTelefone(request.getTelefone());
 		funcionario.setPessoa(pessoa);
 		
-		return repository.save(funcionario);
+		Funcionario funcionarioSaved = repository.save(funcionario);
+		
+		return funcionarioSaved.getId().toString() + " funcionario cadastrado com sucesso";
 	}
 	
 	@Transactional
-	public Funcionario update(FuncionarioRequest request, UUID id) {
+	public String update(FuncionarioRequest request, UUID id) {
 		
 		Funcionario funcionario = findById(id);
 		
@@ -50,7 +54,8 @@ public class FuncionarioServiceImpl {
 		funcionario.setDataAdmissao(request.getDataAdmissao());
 		funcionario.setTelefone(request.getTelefone());
 		
-		return repository.save(funcionario);
+		Funcionario funcionarioSaved = repository.save(funcionario);
+		return funcionarioSaved.getId().toString() + " funcionario atualizado com sucesso";
 	}
 	
 	
@@ -58,8 +63,16 @@ public class FuncionarioServiceImpl {
 		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse funcionario não existe."));
 	}
 	
-	public List<Funcionario> findAll() {
-		return this.repository.findAll();
+	public List<FuncionarioResponse> findAll() {
+		return this.repository.findAll().stream().map(f -> FuncionarioResponse.builder()
+				.id(f.getId())
+				.nome(f.getPessoa().getNome())
+				.ativo(f.isAtivo())
+				.dataAdmissao(f.getDataAdmissao())
+				.telefone(f.getTelefone())
+				.email(f.getEmail())
+				.build()
+				).collect(Collectors.toList());
 	}
 
 	private void verificaSeFuncionarioJaExiste(FuncionarioRequest request) {

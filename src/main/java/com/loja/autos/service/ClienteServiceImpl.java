@@ -1,12 +1,15 @@
 package com.loja.autos.service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.loja.autos.dto.request.ClienteRequest;
 import com.loja.autos.dto.request.PessoaRequest;
+import com.loja.autos.dto.response.ClienteResponse;
 import com.loja.autos.entity.Cliente;
 import com.loja.autos.entity.Pessoa;
 import com.loja.autos.exceptions.NegocioException;
@@ -25,7 +28,7 @@ public class ClienteServiceImpl {
 	private final PessoaServiceImpl pessoaService;
 	
 	@Transactional
-	public Cliente save(ClienteRequest request) {
+	public String save(ClienteRequest request) {
 		
 		verificaSeClienteJaExiste(request);
 		
@@ -33,11 +36,13 @@ public class ClienteServiceImpl {
 
 		Cliente cliente = ClienteMapper.converterToModel(request, pessoa);
 		
-		return repository.save(cliente);
+		Cliente clienteSaved = repository.save(cliente);
+		
+		return clienteSaved.getId().toString() + " Cliente cadastrado com sucesso";
 	}
 	
 	@Transactional
-	public Cliente update(ClienteRequest request, UUID id) {
+	public String update(ClienteRequest request, UUID id) {
 		
 		PessoaRequest pessoaRequest = PessoaMapper.clienteToPessoaRequest(request);
 
@@ -46,12 +51,28 @@ public class ClienteServiceImpl {
 		
 		Cliente clienteUpdate = ClienteMapper.converterToModel(request, clienteBase, pessoa);
 		
-		return repository.save(clienteUpdate);
+		Cliente clienteUpdated = repository.save(clienteUpdate);
+		
+		return clienteUpdated.getId().toString() + " Cliente atualizado com sucesso";
 	}
 	
 	
 	public Cliente findById(UUID id) {
 		return this.repository.findById(id).orElseThrow(() -> new NegocioException("Esse cliente não existe."));
+	}
+	
+	public List<ClienteResponse> findAll() {
+		List<Cliente> lista = this.repository.findAll();
+		
+		return lista.stream().map(c -> ClienteResponse.builder()
+				.nome(c.getPessoa().getNome())
+				.id(c.getId())
+				.ativo(c.getAtivo())
+				.dataNascimento(c.getPessoa().getDataNascimento())
+				.email(c.getEmail())
+				.telefone(c.getTelefone())
+				.build()
+				).collect(Collectors.toList());
 	}
 
 	private void verificaSeClienteJaExiste(ClienteRequest request) {
