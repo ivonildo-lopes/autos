@@ -12,6 +12,9 @@ public interface ClienteRepository extends JpaRepository<Cliente, UUID> {
 
 	@Query("SELECT c FROM Cliente c WHERE c.pessoa.documento = :documento")
 	Cliente findByDocumento(String documento);
+	
+	@Query("SELECT c FROM Cliente c WHERE c.pessoa.nome like %:nome%")
+	List<Cliente> findByNome(String nome);
 
 	@Query(value = """
 								    SELECT *

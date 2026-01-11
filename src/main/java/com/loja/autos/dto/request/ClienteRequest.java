@@ -18,4 +18,6 @@ public class ClienteRequest extends PessoaRequest implements Serializable {
 	@NotBlank(message = "Favor informar o email.")
 	private String email;
 	
+	private String telefone;
+	
 }

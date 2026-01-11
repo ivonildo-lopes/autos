@@ -71,6 +71,7 @@ public class FuncionarioServiceImpl {
 				.dataAdmissao(f.getDataAdmissao())
 				.telefone(f.getTelefone())
 				.email(f.getEmail())
+				.cargo(f.getCargo())
 				.build()
 				).collect(Collectors.toList());
 	}

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.loja.autos.dto.filter.ClienteFilter;
 import com.loja.autos.dto.request.ClienteRequest;
 import com.loja.autos.dto.request.PessoaRequest;
 import com.loja.autos.dto.response.ClienteResponse;
@@ -96,6 +97,12 @@ public class ClienteServiceImpl {
 		if(clienteNaBase != null) {
 			throw new NegocioException("Esse cliente já esta cadastrado.");
 		}
+	}
+
+	public List<ClienteResponse> findFilter(ClienteFilter request) {
+		List<Cliente> lista = this.repository.findByNome(request.getNome());
+		
+		return lista.stream().map(c -> converterResponse(c)).collect(Collectors.toList());
 	}
 
 }

@@ -73,7 +73,8 @@ public class VendaServiceImpl {
 		for(ItemVendaRequest itemRequest : request.getItens()) {
 			Produto produto = produtoServiceImpl.findById(itemRequest.getIdProduto());
 			BigDecimal multiplicador = itemRequest.getTipoUnidade().equals(TipoUnidade.KILO)? BigDecimal.valueOf(itemRequest.getPesoEmKg()) : BigDecimal.valueOf(itemRequest.getQuantidadeUnidade());
-			BigDecimal valorTotalItem = itemRequest.getValorUnitario().multiply(multiplicador);
+//			BigDecimal valorTotalItem = itemRequest.getValorUnitario().multiply(multiplicador);
+			BigDecimal valorTotalItem = produto.getPreco().multiply(multiplicador);
 			
 			ItemVenda item = new ItemVenda();
 			item.setProduto(produto);

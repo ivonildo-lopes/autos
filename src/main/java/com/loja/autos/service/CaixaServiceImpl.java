@@ -73,7 +73,7 @@ public class CaixaServiceImpl {
 	}
 	
 	public List<CaixaResponse> findAll() {
-		var lista = repository.findAll();
+		var lista = repository.getAll();
 		
 		return lista.stream().map(c -> converterResponse(c))
 				.collect(Collectors.toList());

@@ -19,6 +19,8 @@ public class FuncionarioResponse implements Serializable {
 	
 	private String email;
 	
+	private String cargo;
+	
 	private String telefone;
 	
 	private LocalDate dataAdmissao; 
