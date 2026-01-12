@@ -30,5 +30,7 @@ public class ProdutoResponse {
 	private TipoUnidade tipoUnidade;
 	
 	private TipoUsoProduto tipoUsoProduto;
+	
+	private BigDecimal estoque;
 
 }

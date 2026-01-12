@@ -68,6 +68,7 @@ public class ProdutoServiceImpl {
 				.preco(p.getPreco())
 				.tipoUnidade(p.getTipoUnidade())
 				.tipoUsoProduto(p.getTipoUsoProduto())
+				.estoque(p.getEstoque())
 				.build()).collect(Collectors.toList());
 	}
 

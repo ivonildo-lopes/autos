@@ -33,6 +33,8 @@ public class Produto {
 	
 	private BigDecimal preco;
 	
+	private BigDecimal estoque;
+	
 	@Enumerated(EnumType.STRING)
 	private TipoUnidade tipoUnidade;
 	
