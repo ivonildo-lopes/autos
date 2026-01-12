@@ -3,6 +3,7 @@ package com.loja.autos.dto.request;
 import java.math.BigDecimal;
 
 import com.loja.autos.enums.TipoUnidade;
+import com.loja.autos.enums.TipoUsoProduto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,8 @@ public class ProdutoRequest {
 	private BigDecimal preco;
 	
 	private TipoUnidade tipoUnidade;
+	
+	private TipoUsoProduto tipoUsoProduto;
 	
 
 }

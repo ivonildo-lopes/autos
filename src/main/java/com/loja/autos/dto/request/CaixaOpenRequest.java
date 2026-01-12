@@ -10,4 +10,6 @@ import lombok.Setter;
 public class CaixaOpenRequest {
 
 	private BigDecimal valorInicial;
+	
+	private String nome;
 }

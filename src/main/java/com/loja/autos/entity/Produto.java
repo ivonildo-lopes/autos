@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import com.loja.autos.enums.TipoUnidade;
+import com.loja.autos.enums.TipoUsoProduto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,5 +35,8 @@ public class Produto {
 	
 	@Enumerated(EnumType.STRING)
 	private TipoUnidade tipoUnidade;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoUsoProduto tipoUsoProduto;
 
 }

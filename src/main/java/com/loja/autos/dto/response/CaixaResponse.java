@@ -16,6 +16,8 @@ public class CaixaResponse {
 	
 	private UUID id;
 	
+	private String nome;
+	
 	private LocalDate dataAbertura;
 	
 	private LocalTime horaAbertura;

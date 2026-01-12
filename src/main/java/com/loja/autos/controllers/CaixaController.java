@@ -42,4 +42,9 @@ public class CaixaController {
 		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.findAll(), HttpStatus.OK, "Caixas"));
 	}
 	
+	@GetMapping(value = "all-open")
+	public ResponseEntity<?> findAllOpen() {
+		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.findAllOpen(), HttpStatus.OK, "Caixas"));
+	}
+	
 }

@@ -12,5 +12,8 @@ public interface CaixaRepository extends JpaRepository<Caixa, UUID> {
 	
 	@Query(value="select * from tb_caixas order by data_abertura desc, hora_abertura desc", nativeQuery = true)
 	List<Caixa> getAll();
+	
+	@Query(value="select * from tb_caixas where data_fechamento is null order by data_abertura desc, hora_abertura desc", nativeQuery = true)
+	List<Caixa> getAllOpen();
 
 }

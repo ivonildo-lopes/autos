@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import com.loja.autos.enums.TipoUnidade;
+import com.loja.autos.enums.TipoUsoProduto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,5 +28,7 @@ public class ProdutoResponse {
 	private BigDecimal preco;
 
 	private TipoUnidade tipoUnidade;
+	
+	private TipoUsoProduto tipoUsoProduto;
 
 }

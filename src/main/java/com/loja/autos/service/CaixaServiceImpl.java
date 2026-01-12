@@ -37,6 +37,7 @@ public class CaixaServiceImpl {
 		caixa.setHoraAbertura(LocalTime.now());
 		caixa.setUsuario(getUsuario());
 		caixa.setValorInicial(request.getValorInicial());
+		caixa.setNome(request.getNome());
 		
 		repository.save(caixa);
 		
@@ -78,6 +79,13 @@ public class CaixaServiceImpl {
 		return lista.stream().map(c -> converterResponse(c))
 				.collect(Collectors.toList());
 	}
+	
+	public List<CaixaResponse> findAllOpen() {
+		var lista = repository.getAllOpen();
+		
+		return lista.stream().map(c -> converterResponse(c))
+				.collect(Collectors.toList());
+	}
 
 	public CaixaResponse converterResponse(Caixa c) {
 		return CaixaResponse.builder()
@@ -90,6 +98,7 @@ public class CaixaServiceImpl {
 				.valorFinal(c.getValorFinal())
 				.observacoes(c.getObservacoes())
 				.id(c.getId())
+				.nome(c.getNome())
 				.build();
 	}
 

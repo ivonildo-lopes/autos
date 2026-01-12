@@ -30,6 +30,7 @@ public class ProdutoServiceImpl {
 				produtoModel.setNome(request.getNome());
 				produtoModel.setPreco(request.getPreco());
 				produtoModel.setTipoUnidade(request.getTipoUnidade());
+				produtoModel.setTipoUsoProduto(request.getTipoUsoProduto());
 		
 		var produtoBase = repository.save(produtoModel);
 		
@@ -66,6 +67,7 @@ public class ProdutoServiceImpl {
 				.categoria(p.getCategoria())
 				.preco(p.getPreco())
 				.tipoUnidade(p.getTipoUnidade())
+				.tipoUsoProduto(p.getTipoUsoProduto())
 				.build()).collect(Collectors.toList());
 	}
 

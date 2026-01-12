@@ -26,6 +26,8 @@ public class Caixa {
 	@Column(name = "id_caixa")
 	private UUID id;
 	
+	private String nome;
+	
 	private LocalDate dataAbertura;
 	
 	private LocalTime horaAbertura;
