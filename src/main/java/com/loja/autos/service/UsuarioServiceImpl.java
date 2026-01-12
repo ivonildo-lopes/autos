@@ -2,6 +2,7 @@ package com.loja.autos.service;
 
 import java.util.UUID;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,6 +68,17 @@ public class UsuarioServiceImpl {
 		}
 		
 		return new UserSystem(usuarioBase.get());
+	}
+	
+	public Usuario getUsuarioLogado() {
+		// pegar usuário logado
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        var username = auth.getName(); // email, login, etc
+
+        // buscar o usuário no banco
+        Usuario usuario = repository.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+		return usuario;
 	}
 
 	private void verificaSeUsuarioJaExiste(UsuarioRequest request) {

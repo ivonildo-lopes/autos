@@ -71,5 +71,17 @@ public class ProdutoServiceImpl {
 				.estoque(p.getEstoque())
 				.build()).collect(Collectors.toList());
 	}
+	
+	public List<ProdutoResponse> findAllTipoVenda() {
+		return repository.getAllTipoVenda().stream().map(p -> ProdutoResponse.builder()
+				.id(p.getId())
+				.nome(p.getNome())
+				.categoria(p.getCategoria())
+				.preco(p.getPreco())
+				.tipoUnidade(p.getTipoUnidade())
+				.tipoUsoProduto(p.getTipoUsoProduto())
+				.estoque(p.getEstoque())
+				.build()).collect(Collectors.toList());
+	}
 
 }

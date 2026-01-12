@@ -38,7 +38,12 @@ public class ProdutoController {
 	
 	@GetMapping
 	public ResponseEntity<?> findAll() {
-		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.findAll(), HttpStatus.OK, "Lista de Funcionarios"));
+		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.findAll(), HttpStatus.OK, "Lista de produtos"));
+	}
+	
+	@GetMapping(value = "/tipo-venda")
+	public ResponseEntity<?> findAllTipoVenda() {
+		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.findAllTipoVenda(), HttpStatus.OK, "Lista de produtos tipo venda"));
 	}
 	
 }

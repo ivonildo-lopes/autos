@@ -45,6 +45,7 @@ public class EntradaProdutoServiceImpl {
 		
 		produto.setEstoque(produto.getEstoque() == null? BigDecimal.ZERO.add(ep.getQuantidade()) : produto.getEstoque().add(ep.getQuantidade()));
 		
+		//por estar usando o @Transactional o objeto produto esta sendo atualizado no banco de dados com o campo estoque - sem precisar usar o save do produto
 		
 		return "entrada de produto realizada com sucesso";
 		
