@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import com.loja.autos.enums.FormaPagamento;
 import com.loja.autos.enums.StatusLancamento;
 import com.loja.autos.enums.TipoLancamento;
 
@@ -35,4 +36,8 @@ public class ContasAPagarResponse implements Serializable {
 	private LocalDate dataPagamento;
 	
 	private BigDecimal valor;
+	
+	private FormaPagamento formaPagamento;
+	
+	private String caixa;
 }

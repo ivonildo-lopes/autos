@@ -47,4 +47,9 @@ public class CaixaController {
 		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.findAllOpen(), HttpStatus.OK, "Caixas"));
 	}
 	
+	@GetMapping(value = "/resumo/{id}")
+	public ResponseEntity<?> resumo(@PathVariable(value = "id") UUID id) {
+		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.resumoFechamento(id), HttpStatus.OK, "resumo caixa"));
+	}
+	
 }

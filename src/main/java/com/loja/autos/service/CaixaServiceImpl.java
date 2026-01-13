@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.loja.autos.dto.request.CaixaCloseRequest;
 import com.loja.autos.dto.request.CaixaOpenRequest;
 import com.loja.autos.dto.response.CaixaResponse;
+import com.loja.autos.dto.response.CaixaResumoFechamentoResponse;
 import com.loja.autos.entity.Caixa;
 import com.loja.autos.entity.Usuario;
 import com.loja.autos.exceptions.NegocioException;
@@ -85,6 +86,10 @@ public class CaixaServiceImpl {
 		
 		return lista.stream().map(c -> converterResponse(c))
 				.collect(Collectors.toList());
+	}
+	
+	public CaixaResumoFechamentoResponse resumoFechamento(UUID id) {
+		return repository.findResumoFechamento(id).get();
 	}
 
 	public CaixaResponse converterResponse(Caixa c) {

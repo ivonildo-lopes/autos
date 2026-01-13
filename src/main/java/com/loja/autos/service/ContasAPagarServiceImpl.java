@@ -11,6 +11,7 @@ import com.loja.autos.dto.request.ContasAPagarPaymentRequest;
 import com.loja.autos.dto.request.ContasAPagarRequest;
 import com.loja.autos.dto.response.ContasAPagarResponse;
 import com.loja.autos.entity.Lancamento;
+import com.loja.autos.enums.FormaPagamento;
 import com.loja.autos.enums.StatusLancamento;
 import com.loja.autos.enums.TipoLancamento;
 import com.loja.autos.exceptions.NegocioException;
@@ -27,18 +28,25 @@ public class ContasAPagarServiceImpl {
 	
 	private final CategoriaServiceImpl categoriaService;
 	
+	private final CaixaServiceImpl caixaService;
+	
 	@Transactional
 	public String register(ContasAPagarRequest request) {
 		
 		var categoria = categoriaService.findById(request.getIdCategoria());
 		
-		var cp = ContasAPagarMapper.conververToModel(request, categoria);
+		var caixa = request.getIdCaixa() == null? null : caixaService.findById(request.getIdCaixa());
+		
+		var cp = ContasAPagarMapper.conververToModel(request, categoria, caixa);
 		
 		if(cp.getValor().doubleValue() < 0)
 			throw new NegocioException("o valor do lançamento não pode ser negativo");
 		
 		if(cp.getDataPagamento() != null && cp.getDataPagamento().isBefore(cp.getDataVencimento()))
 			throw new NegocioException("a data do pagamento não pode ser anterior a data do vencimento");
+		
+		if(FormaPagamento.DINHEIRO.equals(cp.getFormaPagamento()) && cp.getCaixa() == null)
+			throw new NegocioException("favor informe o caixa");
 		
 		repository.save(cp);
 		
@@ -93,6 +101,8 @@ public class ContasAPagarServiceImpl {
 						.dataVencimento(cp.getDataVencimento())
 						.dataPagamento(cp.getDataPagamento())
 						.valor(cp.getValor())
+						.caixa(cp.getCaixa() != null? cp.getCaixa().getNome() : null)
+						.formaPagamento(cp.getFormaPagamento())
 						.build()
 						).collect(Collectors.toList());
 	}

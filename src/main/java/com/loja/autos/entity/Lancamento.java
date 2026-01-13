@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import com.loja.autos.enums.FormaPagamento;
 import com.loja.autos.enums.StatusLancamento;
 import com.loja.autos.enums.TipoLancamento;
 
@@ -53,4 +54,11 @@ public class Lancamento implements Serializable {
 	
 	@Column(precision = 12, scale = 2)
 	private BigDecimal valor;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_caixa", nullable = true)
+	private Caixa caixa;
+	
+	@Enumerated(EnumType.STRING)
+	private FormaPagamento formaPagamento;
 }

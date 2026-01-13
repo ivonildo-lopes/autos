@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import com.loja.autos.enums.FormaPagamento;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -33,5 +35,10 @@ public class ContasAPagarRequest implements Serializable {
     
     @NotNull(message = "Favor informar o valor.")
     private BigDecimal valor;
+    
+    private UUID idCaixa;
+    
+    @NotNull(message = "Favor informar a forma de pagamento.")
+    private FormaPagamento formaPagamento;
 
 }
