@@ -2,6 +2,6 @@ package com.loja.autos.enums;
 
 public enum Role {
 	
-	ADMIN, VENDEDOR
+	ADMIN, VENDEDOR, FINANCEIRO
 
 }
