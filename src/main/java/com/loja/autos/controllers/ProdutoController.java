@@ -4,13 +4,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.loja.autos.dto.ResponseDto;
 import com.loja.autos.dto.request.ProdutoRequest;
@@ -45,5 +39,9 @@ public class ProdutoController {
 	public ResponseEntity<?> findAllTipoVenda() {
 		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.findAllTipoVenda(), HttpStatus.OK, "Lista de produtos tipo venda"));
 	}
-	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<?> destroy(@PathVariable UUID id){
+		service.destroy(id);
+		return ResponseEntity.noContent().build();
+	}
 }

@@ -83,5 +83,9 @@ public class ProdutoServiceImpl {
 				.estoque(p.getEstoque())
 				.build()).collect(Collectors.toList());
 	}
+	public void destroy (UUID id){
+		var produto = findById(id);
+		repository.delete(produto);
+	}
 
 }
