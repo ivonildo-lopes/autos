@@ -1,6 +1,7 @@
 package com.loja.autos.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -122,9 +123,10 @@ public class VendaServiceImpl {
 			somaValoresPagamentos = somaValoresPagamentos.add(pagamentoRequest.getValorPago());
 		}
 		
-		clienteServiceImpl.saveClientPosVenda(cliente);
+		if(cliente != null)
+			clienteServiceImpl.saveClientPosVenda(cliente);
 		
-		if(somaValoresPagamentos.compareTo(valorTotalVenda) != 0) {
+		if(somaValoresPagamentos.setScale(2, RoundingMode.HALF_UP).compareTo(valorTotalVenda.setScale(2, RoundingMode.HALF_UP)) != 0) {
 			throw new NegocioException("Soma dos pagamentos (" +  somaValoresPagamentos + ") != total da venda ( "  + valorTotalVenda + " ) falta " + MoneyUtil.converterString(valorTotalVenda.subtract(somaValoresPagamentos)));
 		}
 		
@@ -143,7 +145,7 @@ public class VendaServiceImpl {
 		return VendaResponse.builder()
 				.id(vendaSaved.getId())
 				.caixa(caixaServiceImpl.converterResponse(vendaSaved.getCaixa()))
-				.cliente(clienteServiceImpl.converterResponse(vendaSaved.getCliente()))
+				.cliente(vendaSaved.getCliente() == null? null : clienteServiceImpl.converterResponse(vendaSaved.getCliente()))
 				.dataHora(vendaSaved.getDataHora())
 				.desconto(vendaSaved.getDesconto())
 				.valorTotal(vendaSaved.getValorTotal())

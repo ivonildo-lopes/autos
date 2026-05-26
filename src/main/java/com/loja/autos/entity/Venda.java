@@ -36,7 +36,7 @@ public class Venda {
 	private LocalDateTime dataHora;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_cliente", nullable = false)
+	@JoinColumn(name = "id_cliente", nullable = true)
 	private Cliente cliente;
 	
 	@ManyToOne(optional = false)
