@@ -38,7 +38,6 @@ public class ContasAPagarRequest implements Serializable {
     
     private UUID idCaixa;
     
-    @NotNull(message = "Favor informar a forma de pagamento.")
     private FormaPagamento formaPagamento;
 
 }

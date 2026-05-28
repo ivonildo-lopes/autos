@@ -66,6 +66,7 @@ public class ContasAPagarServiceImpl {
 		
 		lancamento.setDataPagamento(request.getDataPagamento());
 		lancamento.setStatusLancamento(StatusLancamento.PAGO);
+		lancamento.setFormaPagamento(request.getFormaPagamento());
 		
 		repository.save(lancamento);
 		
