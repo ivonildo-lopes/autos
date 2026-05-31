@@ -45,4 +45,15 @@ public class RelatorioController {
                 "Faturamento mensal"
             ));
     }
+    
+    
+    @GetMapping("/dashboard")
+    public ResponseEntity<?> dashboard() {
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(ResponseDto.fromData(
+                service.resumoDashboard(),
+                HttpStatus.OK,
+                "Resumo do dashboard"
+            ));
+    }
 }
