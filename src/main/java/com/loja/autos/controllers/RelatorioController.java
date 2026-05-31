@@ -32,4 +32,17 @@ public class RelatorioController {
                 "Faturamento diário"
             ));
     }
+    
+    @GetMapping("/faturamento-mensal")
+    public ResponseEntity<?> faturamentoMensal(
+        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataInicio,
+        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataFim
+    ) {
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(ResponseDto.fromData(
+                service.faturamentoMensal(dataInicio, dataFim),
+                HttpStatus.OK,
+                "Faturamento mensal"
+            ));
+    }
 }
