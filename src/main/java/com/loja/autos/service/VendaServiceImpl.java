@@ -15,6 +15,7 @@ import com.loja.autos.dto.request.VendaRequest;
 import com.loja.autos.dto.response.ItemVendaResponse;
 import com.loja.autos.dto.response.PagamentoVendaResponse;
 import com.loja.autos.dto.response.VendaResponse;
+import com.loja.autos.dto.response.VendasPorFormaPagamentoResponse;
 import com.loja.autos.entity.Caixa;
 import com.loja.autos.entity.Cliente;
 import com.loja.autos.entity.ItemVenda;
@@ -126,7 +127,7 @@ public class VendaServiceImpl {
 		if(cliente != null)
 			clienteServiceImpl.saveClientPosVenda(cliente);
 		
-		if(somaValoresPagamentos.setScale(2, RoundingMode.HALF_UP).compareTo(valorTotalVenda.setScale(2, RoundingMode.HALF_UP)) != 0) {
+		if(somaValoresPagamentos.setScale(2, RoundingMode.HALF_UP).compareTo(valorTotalVenda.setScale(2, RoundingMode.HALF_UP)) < 0) {
 			throw new NegocioException("Soma dos pagamentos (" +  somaValoresPagamentos + ") != total da venda ( "  + valorTotalVenda + " ) falta " + MoneyUtil.converterString(valorTotalVenda.subtract(somaValoresPagamentos)));
 		}
 		
@@ -181,6 +182,10 @@ public class VendaServiceImpl {
 				.valorPago(p.getValorPago())
 				.build()
 				).collect(Collectors.toList());
+	}
+	
+	public List<VendasPorFormaPagamentoResponse> vendasHojePorFormaPagamento() {
+	    return repository.findVendasHojePorFormaPagamento();
 	}
 	
 

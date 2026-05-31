@@ -40,4 +40,14 @@ public class VendaController {
 		return ResponseEntity.status(HttpStatus.OK).body(ResponseDto.fromData(service.findAll(), HttpStatus.OK, "Todas as vendas"));
 	}
 	
+	@GetMapping("/vendas-hoje")
+	public ResponseEntity<?> vendasHoje() {
+	    return ResponseEntity.status(HttpStatus.OK)
+	        .body(ResponseDto.fromData(
+	            service.vendasHojePorFormaPagamento(),
+	            HttpStatus.OK,
+	            "Vendas do dia por forma de pagamento"
+	        ));
+	}
+	
 }
