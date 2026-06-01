@@ -67,4 +67,45 @@ public interface RelatorioRepository extends JpaRepository<Venda, UUID> {
 
 		Double getTotalFaturamento();
 	}
+
+	@Query(value = """
+					    SELECT
+			    v.id_venda AS id,
+			    v.data_hora AS dataHora,
+			    c.nome AS nomeCaixa,
+			    v.status_venda AS statusVenda,
+			    COALESCE(SUM(pv.valor_pago), 0) AS totalVenda,
+			    STRING_AGG(
+			        DISTINCT pv.forma_pagamento,
+			        ', ' ORDER BY pv.forma_pagamento
+			    ) AS formasPagamento
+			FROM tb_vendas v
+			JOIN tb_caixas c
+			    ON c.id_caixa = v.id_caixa
+			LEFT JOIN tb_pagamentos_vendas pv
+			    ON pv.id_venda = v.id_venda
+			WHERE v.data_hora::date BETWEEN :dataInicio AND :dataFim
+			GROUP BY
+			    v.id_venda,
+			    v.data_hora,
+			    c.nome,
+			    v.status_venda
+			ORDER BY v.data_hora DESC;
+					    """, nativeQuery = true)
+	List<VendaResumoProjection> findHistoricoVendas(@Param("dataInicio") LocalDate dataInicio,
+			@Param("dataFim") LocalDate dataFim);
+
+	interface VendaResumoProjection {
+		String getId();
+
+		String getDataHora();
+
+		String getNomeCaixa();
+
+		String getStatusVenda();
+
+		Double getTotalVenda();
+
+		String getFormasPagamento();
+	}
 }
